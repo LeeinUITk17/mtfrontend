@@ -12,5 +12,5 @@ export default {
   theme: {
     extend: {}, // Nơi bạn có thể mở rộng theme mặc định (màu sắc, font chữ...)
   },
-  plugins: [], // Nơi bạn có thể thêm các plugin Tailwind
+  plugins: [require('@tailwindcss/typography'),], // Nơi bạn có thể thêm các plugin Tailwind
 }

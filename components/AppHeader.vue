@@ -27,7 +27,7 @@
                 <ul class="hidden md:flex items-center space-x-6 text-xl font-semibold">
                     <li><NuxtLink to="/plants" class="hover:text-opacity-80 transition-colors">Plants</NuxtLink></li>
                     <li><NuxtLink to="/posts" class="hover:text-opacity-80 transition-colors">Posts</NuxtLink></li>
-                    <li><NuxtLink to="/testimonials" class="hover:text-opacity-80 transition-colors">Testimonials</NuxtLink></li>
+                    <li><NuxtLink to="/contact" class="hover:text-opacity-80 transition-colors">Contact</NuxtLink></li>
                     <li><NuxtLink to="/gallery" class="hover:text-opacity-80 transition-colors">Gallery</NuxtLink></li>
                 </ul>
             </div>
