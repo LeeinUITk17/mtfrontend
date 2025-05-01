@@ -23,7 +23,7 @@
             </div>
         </section>
 
-        <section id="recent-posts-section" class="bg-gray-100 py-12 md:py-16">
+        <section id="recent-posts-section" class="bg-gray-100 rounded-xl py-12 md:py-16">
             <div class="container mx-auto px-4">
                 <h2 class="text-3xl md:text-4xl font-bold text-center text-green-700 mb-8">Recent Posts</h2>
                 <div v-if="postsPending" class="text-center">

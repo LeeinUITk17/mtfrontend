@@ -63,7 +63,7 @@ export const useAuth = () => {
         }
     };
 
-    const signup = async (signupData: { name: string; email: string; password: string; phone?: string }) => {
+    const signup = async (signupData: { username: string; email: string; password: string; }) => {
         if (!$api) {
             console.error('[useAuth] $api not available for signup.');
             return { success: false, error: 'API client not ready.' };
