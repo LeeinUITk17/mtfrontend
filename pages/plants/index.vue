@@ -1,44 +1,45 @@
 <template>
     <div class="container mx-auto px-4 py-8">
+        <h1 class="text-3xl md:text-4xl font-bold text-center text-green-700 mb-8">Danh mục Cây cảnh</h1>
 
         <div class="mb-8 flex flex-col md:flex-row justify-center gap-4">
-            <div v-if="categoriesPending" class="text-gray-600"></div>
-            <div v-else-if="categoriesError" class="text-red-500">Error loading categories: {{ categoriesError.message }}</div>
+            <div v-if="categoriesPending" class="text-gray-600">Đang tải danh mục...</div>
+            <div v-else-if="categoriesError" class="text-red-500">Lỗi tải danh mục: {{ categoriesError.message }}</div>
             <select
                 v-else-if="categories && categories.length > 0"
                 v-model="selectedCategoryId"
                 class="block w-full md:w-auto px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm"
-                aria-label="Filter plants by category"
+                aria-label="Lọc cây theo danh mục"
             >
-                <option value="">All Categories</option>
+                <option value="">Tất cả danh mục</option>
                 <option v-for="category in categories" :key="category.id" :value="category.id">
                     {{ category.name }}
                 </option>
             </select>
-            <div v-else class="text-gray-600">No categories available.</div>
+            <div v-else class="text-gray-600">Không có danh mục nào.</div>
 
             <input
                 type="text"
                 v-model="searchTerm"
-                placeholder="Search plants..."
+                placeholder="Tìm kiếm cây..."
                 class="block w-full md:w-64 px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm"
-                aria-label="Search plants"
+                aria-label="Tìm kiếm cây"
             />
         </div>
 
         <div v-if="plantsPending" class="text-center py-12">
             <LoadingSpinner class="w-10 h-10 text-green-600 mx-auto" />
-            <p class="mt-4 text-gray-700">Loading plant list...</p>
+            <p class="mt-4 text-gray-700">Đang tải danh sách cây...</p>
         </div>
 
         <div v-else-if="plantsError" class="text-center text-red-500 py-12">
-            <p>Error loading plant list: {{ plantsError.message }}</p>
-            <p class="mt-2">Please try again later.</p>
+            <p>Lỗi khi tải danh sách cây: {{ plantsError.message }}</p>
+            <p class="mt-2">Vui lòng thử lại sau.</p>
         </div>
 
-        <div v-else-if="displayedPlants && displayedPlants.length > 0" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
+        <div v-else-if="paginatedPlants && paginatedPlants.length > 0" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
             <NuxtLink
-                v-for="plant in displayedPlants"
+                v-for="plant in paginatedPlants"
                 :key="plant.id"
                 :to="`/plants/${plant.id}`"
                 class="block"
@@ -47,50 +48,64 @@
             </NuxtLink>
         </div>
 
-        <div v-else class="text-center text-gray-600 py-12">
-            <p class="text-xl font-semibold">No plants found{{ selectedCategoryId ? ' in this category' : '' }}{{ searchTerm ? ' with the keyword "' + searchTerm + '"' : '' }}.</p>
-            <p class="mt-2">Try selecting a different category or changing the search keyword.</p>
+        <div v-else-if="!plantsPending && !plantsError && (!paginatedPlants || paginatedPlants.length === 0)" class="text-center text-gray-600 py-12">
+            <p class="text-xl font-semibold">Không có cây cảnh nào được tìm thấy{{ selectedCategoryId ? ' trong danh mục này' : '' }}{{ searchTerm ? ' với từ khóa "' + searchTerm + '"' : '' }}.</p>
+            <p class="mt-2">Hãy thử chọn danh mục khác hoặc thay đổi từ khóa tìm kiếm.</p>
+        </div>
+
+        <div v-if="totalPages > 1 && !plantsPending && !plantsError && filteredPlants && filteredPlants.length > 0" class="mt-12 flex justify-center items-center space-x-2">
+            <button
+                @click="prevPage"
+                :disabled="currentPage === 1"
+                class="px-3 py-1 border rounded-md text-gray-600 hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+                Trước
+            </button>
+
+            <button
+                v-for="page in totalPages"
+                :key="page"
+                @click="goToPage(page)"
+                :class="{
+                    'bg-green-500 text-white': currentPage === page,
+                    'bg-white text-gray-700 hover:bg-gray-100': currentPage !== page
+                }"
+                class="px-3 py-1 border rounded-md transition-colors"
+            >
+                {{ page }}
+            </button>
+
+            <button
+                @click="nextPage"
+                :disabled="currentPage === totalPages"
+                class="px-3 py-1 border rounded-md text-gray-600 hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+                Sau
+            </button>
         </div>
     </div>
 </template>
 
 <script setup>
-import { ref, onMounted, computed } from 'vue';
+import { ref, computed, watch } from 'vue';
 import LoadingSpinner from '~/components/common/LoadingSpinner.vue';
 import PlantCard from '~/components/plants/PlantCard.vue';
 
+const config = useRuntimeConfig();
 const selectedCategoryId = ref('');
 const searchTerm = ref('');
+const currentPage = ref(1);
+const itemsPerPage = ref(8);
 
-const sampleCategories = [
-    { id: 'cat1', name: 'Indoor Plants' },
-    { id: 'cat2', name: 'Outdoor Plants' },
-    { id: 'cat3', name: 'Succulents' },
-    { id: '', name: 'Uncategorized' },
-];
+const { data: categories, pending: categoriesPending, error: categoriesError } = await useFetch(`${config.public.apiBase}/categories`);
+const { data: plants, pending: plantsPending, error: plantsError, refresh: fetchPlants } = await useFetch(`${config.public.apiBase}/plants`, {
+    query: {
+        categoryId: selectedCategoryId,
+    },
+    watch: [selectedCategoryId],
+});
 
-const samplePlants = [
-    { id: '1', name: 'Monstera Deliciosa', description: 'Popular and easy to care for.', price: 250000, imageUrl: 'https://res.cloudinary.com/dbonwxmgl/image/upload/v17046003295/isljuytzamjj4kc2jrzb.png', categoryId: 'cat1', category: { id: 'cat1', name: 'Indoor Plants' } },
-    { id: '2', name: 'Calathea Orbifolia', description: 'Beautiful round leaves.', price: 180000, imageUrl: 'https://res.cloudinary.com/dbonwxmgl/image/upload/v17046003295/isljuytzamjj4kc2jrzb.png', categoryId: 'cat1', category: { id: 'cat1', name: 'Indoor Plants' } },
-    { id: '3', name: 'Snake Plant', description: 'Great air purifier.', price: 100000, imageUrl: 'https://res.cloudinary.com/dbonwxmgl/image/upload/v17046003295/isljuytzamjj4kc2jrzb.png', categoryId: 'cat1', category: { id: 'cat1', name: 'Indoor Plants' } },
-    { id: '4', name: 'Fiddle Leaf Fig', description: 'Miniature Singapore fig.', price: 300000, imageUrl: 'https://res.cloudinary.com/dbonwxmgl/image/upload/v17046003295/isljuytzamjj4kc2jrzb.png', categoryId: 'cat2', category: { id: 'cat2', name: 'Outdoor Plants' } },
-    { id: '5', name: 'ZZ Plant', description: 'Symbol of luck.', price: 150000, imageUrl: 'https://res.cloudinary.com/dbonwxmgl/image/upload/v17046003295/isljuytzamjj4kc2jrzb.png', categoryId: '', category: null },
-    { id: '6', name: 'Peace Lily', description: 'Beautiful white flowers.', price: 120000, imageUrl: 'https://res.cloudinary.com/dbonwxmgl/image/upload/v17046003295/isljuytzamjj4kc2jrzb.png', categoryId: 'cat1', category: { id: 'cat1', name: 'Indoor Plants' } },
-    { id: '7', name: 'Pothos', description: 'Easy to grow trailing plant.', price: 80000, imageUrl: 'https://res.cloudinary.com/dbonwxmgl/image/upload/v17046003295/isljuytzamjj4kc2jrzb.png', categoryId: 'cat1', category: { id: 'cat1', name: 'Indoor Plants' } },
-    { id: '8', name: 'Spider Plant', description: 'Produces spiderettes, easy to propagate.', price: 90000, imageUrl: 'https://res.cloudinary.com/dbonwxmgl/image/upload/v17046003295/isljuytzamjj4kc2jrzb.png', categoryId: 'cat1', category: { id: 'cat1', name: 'Indoor Plants' } },
-    { id: '9', name: 'Aloe Vera', description: 'Known for its medicinal properties.', price: 110000, imageUrl: 'https://res.cloudinary.com/dbonwxmgl/image/upload/v17046003295/isljuytzamjj4kc2jrzb.png', categoryId: 'cat3', category: { id: 'cat3', name: 'Succulents' } },
-    { id: '10', name: 'Rubber Plant', description: 'Striking foliage and easy care.', price: 170000, imageUrl: 'https://res.cloudinary.com/dbonwxmgl/image/upload/v17046003295/isljuytzamjj4kc2jrzb.png', categoryId: 'cat2', category: { id: 'cat2', name: 'Outdoor Plants' } },
-];
-
-const categories = ref([]);
-const categoriesPending = ref(true);
-const categoriesError = ref(null);
-
-const plants = ref([]);
-const plantsPending = ref(true);
-const plantsError = ref(null);
-
-const displayedPlants = computed(() => {
+const filteredPlants = computed(() => {
     if (!plants.value) return [];
     let filtered = plants.value;
     const selectedId = selectedCategoryId.value;
@@ -102,9 +117,10 @@ const displayedPlants = computed(() => {
 
     if (term !== '') {
         filtered = filtered.filter(plant => {
-            const nameMatch = plant.name.toLowerCase().includes(term);
+            const categoryName = categories.value?.find(cat => cat.id === plant.categoryId)?.name;
+            const nameMatch = plant.name?.toLowerCase().includes(term);
             const descriptionMatch = plant.description?.toLowerCase().includes(term);
-            const categoryMatch = plant.category?.name?.toLowerCase().includes(term);
+            const categoryMatch = categoryName?.toLowerCase().includes(term);
             return nameMatch || descriptionMatch || categoryMatch;
         });
     }
@@ -112,22 +128,55 @@ const displayedPlants = computed(() => {
     return filtered;
 });
 
-onMounted(() => {
-    const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+const totalPages = computed(() => {
+    if (!filteredPlants.value) return 0;
+    return Math.ceil(filteredPlants.value.length / itemsPerPage.value);
+});
 
-    delay(300).then(() => {
-        categoriesPending.value = false;
-        if (!categoriesError.value) {
-            categories.value = sampleCategories;
-        }
-    });
+const paginatedPlants = computed(() => {
+    if (!filteredPlants.value) return [];
+    const start = (currentPage.value - 1) * itemsPerPage.value;
+    const end = start + itemsPerPage.value;
+    return filteredPlants.value.slice(start, end);
+});
 
-    delay(800).then(() => {
-        plantsPending.value = false;
-        if (!plantsError.value) {
-            plants.value = samplePlants;
-        }
-    });
+watch(filteredPlants, () => {
+    currentPage.value = 1;
+}, { deep: true });
+
+watch(totalPages, (newTotalPages) => {
+    if (currentPage.value > newTotalPages) {
+        currentPage.value = Math.max(1, newTotalPages);
+    }
+});
+
+const goToPage = (page) => {
+    if (page >= 1 && page <= totalPages.value) {
+        currentPage.value = page;
+    }
+};
+
+const nextPage = () => {
+    if (currentPage.value < totalPages.value) {
+        goToPage(currentPage.value + 1);
+    }
+};
+
+const prevPage = () => {
+    if (currentPage.value > 1) {
+        goToPage(currentPage.value - 1);
+    }
+};
+
+useHead({
+    title: 'Danh mục Cây cảnh - Plant Shop',
+    meta: [
+        { name: 'description', content: 'Khám phá bộ sưu tập đa dạng các loại cây cảnh của chúng tôi. Tìm cây hoàn hảo cho không gian của bạn.' },
+        { property: 'og:title', content: 'Danh mục Cây cảnh - Plant Shop' },
+        { property: 'og:description', content: 'Khám phá bộ sưu tập đa dạng các loại cây cảnh của chúng tôi. Tìm cây hoàn hảo cho không gian của bạn.' },
+        { property: 'og:image', content: '/social-share-image.jpg' },
+        { property: 'og:url', content: `${config.public.apiBase}/plants` },
+    ],
 });
 </script>
 

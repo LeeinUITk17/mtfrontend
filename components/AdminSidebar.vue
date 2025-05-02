@@ -1,8 +1,15 @@
 <template>
     <div class="p-4">
-        <div class="text-2xl font-bold text-center mb-6 text-green-400">
-            Admin Panel
-        </div>
+        <NuxtLink to="/admin" class="flex items-center hover:opacity-90 transition-opacity space-x-2 mb-4 md:space-x-3">
+                <img
+                    src="https://res.cloudinary.com/dbonwxmgl/image/upload/v1746146995/gpg18t1hvlrlvww9sw9j.png"
+                    alt="Cây Giống Tuấn Anh Logo"
+                    class="h-9 w-auto md:h-11 rounded-full shadow-sm"
+                >
+                <span class="text-xl md:text-2xl lg:text-3xl font-bold text-green-700">
+                    ADMIN
+                </span>
+            </NuxtLink>
 
         <nav>
             <ul class="space-y-2">

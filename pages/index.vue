@@ -41,10 +41,10 @@
             </div>
         </section>
 
-        <section id="cta-section" class="bg-primary py-8 text-white text-center">
+        <section id="cta-section" class="bg-primary py-8 text-gray-600 font-bold text-center">
             <div class="container mx-auto px-4">
                 <p class="text-xl mb-4">Ready to find a new plant or share your experience?</p>
-                <NuxtLink to="/plants" class="inline-block border-2 border-white text-white text-lg font-semibold px-8 py-3 rounded-full hover:bg-green-500 hover:text-primary transition-colors">
+                <NuxtLink to="/plants" class="inline-block border-2 border-black text-gray-600 text-lg font-semibold px-8 py-3 rounded-full hover:bg-green-500 hover:text-primary hover:text-white transition-colors">
                     Start Exploring
                 </NuxtLink>
             </div>

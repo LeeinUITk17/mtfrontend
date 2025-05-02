@@ -1,7 +1,7 @@
 <template>
-    <div class="relative w-full h-auto border-4 border-white rounded-lg  text-white py-12">
+    <div class="relative w-full h-auto border-4 border-gray-600 rounded-2xl  text-gray-600 py-12">
         <div class="text-center mb-12">
-            <h2 class="text-3xl font-bold text-white mt-2">What they're saying about us</h2>
+            <h2 class="text-3xl font-bold text-gray-600 mt-2">What they're saying about us</h2>
         </div>
         <div class="flex w-full overflow-hidden relative">
             <div

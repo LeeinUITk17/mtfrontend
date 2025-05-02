@@ -1,112 +1,132 @@
 <template>
-    <div class="py-4">
-        <h1 class="text-2xl font-bold text-gray-800 mb-6">Image Gallery Management</h1>
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-3xl md:text-4xl font-bold text-center text-green-700 mb-8">Bộ sưu tập Ảnh</h1>
 
-        <div class="mb-6 bg-white rounded-lg shadow p-6">
-            <h3 class="text-lg font-semibold text-gray-700 mb-4">Upload New Image</h3>
-            <form @submit.prevent="handleUpload" class="space-y-4">
-                <div>
-                    <label for="image-file" class="block text-sm font-medium text-gray-700">Select Image</label>
-                    <input
-                        type="file"
-                        id="image-file"
-                        @change="handleFileSelect"
-                        accept="image/*"
-                        required
-                        class="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-green-50 file:text-green-700 hover:file:bg-green-100"
-                    />
-                </div>
-                <div class="flex justify-end">
-                    <button
-                        type="submit"
-                        :disabled="uploading"
-                        class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 disabled:opacity-50"
-                    >
-                        {{ uploading ? 'Uploading...' : 'Upload' }}
-                    </button>
-                </div>
-            </form>
+        <div v-if="imagesPending" class="text-center py-12">
+            <LoadingSpinner class="w-10 h-10 text-green-600 mx-auto" />
+            <p class="mt-4 text-gray-700">Đang tải ảnh bộ sưu tập...</p>
         </div>
 
-        <div class="bg-white rounded-lg shadow p-6">
-            <h3 class="text-lg font-semibold text-gray-700 mb-4">Image Gallery</h3>
-            <div v-if="imagesPending" class="text-center">
-                <LoadingSpinner />
-                <p>Loading images...</p>
-            </div>
-            <div v-else-if="imagesError" class="text-red-500">Error: {{ imagesError.message }}</div>
-            <div v-else-if="images && images.length > 0" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-                <div v-for="image in images" :key="image.id" class="relative aspect-square rounded-lg overflow-hidden group">
-                    <NuxtImg :src="image.url" alt="Gallery Image" class="w-full h-full object-cover" loading="lazy" />
-                    <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                        <button
-                            @click="confirmDeleteImage(image.id)"
-                            class="text-white bg-red-600 p-2 rounded-full hover:bg-red-700"
-                            aria-label="Delete Image"
-                        >
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div v-else class="text-gray-600 italic">No images in the gallery yet.</div>
+        <div v-else-if="imagesError" class="text-center text-red-500 py-12">
+            <p>Lỗi khi tải ảnh bộ sưu tập: {{ imagesError.message }}</p>
+            <p class="mt-2">Vui lòng thử lại sau.</p>
+        </div>
+
+        <div v-else>
+            <ImagesGridWithModal :images="paginatedImages" />
+        </div>
+
+        <div v-if="!imagesPending && !imagesError && (!images || images.length === 0)" class="text-center text-gray-600 py-12">
+            <p class="text-xl font-semibold">Không có ảnh nào trong bộ sưu tập.</p>
+            <p class="mt-2">Hãy quay lại sau để xem các bộ sưu tập ảnh mới!</p>
+        </div>
+
+        <div v-if="totalPages > 1 && !imagesPending && !imagesError && images && images.length > 0" class="mt-12 flex justify-center items-center space-x-2">
+            <button
+                @click="prevPage"
+                :disabled="currentPage === 1"
+                class="px-3 py-1 border rounded-md text-gray-600 hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+                Trước
+            </button>
+
+            <button
+                v-for="page in totalPages"
+                :key="page"
+                @click="goToPage(page)"
+                :class="{
+                    'bg-green-500 text-white': currentPage === page,
+                    'bg-white text-gray-700 hover:bg-gray-100': currentPage !== page
+                }"
+                class="px-3 py-1 border rounded-md transition-colors"
+            >
+                {{ page }}
+            </button>
+
+            <button
+                @click="nextPage"
+                :disabled="currentPage === totalPages"
+                class="px-3 py-1 border rounded-md text-gray-600 hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+                Sau
+            </button>
         </div>
     </div>
 </template>
 
 <script setup>
-import { useAsyncData } from '#app';
-import { ref } from 'vue';
+import { ref, computed, watch } from 'vue';
 import LoadingSpinner from '~/components/common/LoadingSpinner.vue';
+import ImagesGridWithModal from '~/components/gallery/ImagesGridWithModal.vue';
 
-definePageMeta({
-    layout: 'admin',
-    middleware: ['auth']
-});
+const config = useRuntimeConfig();
 
-const selectedFile = ref(null);
-const uploading = ref(false);
+const currentPage = ref(1);
+const itemsPerPage = ref(10);
 
-const handleFileSelect = (event) => {
-    selectedFile.value = event.target.files ? event.target.files[0] : null;
-};
-
-const handleUpload = async () => {
-    if (!selectedFile.value) return;
-
-    uploading.value = true;
-
-    const formData = new FormData();
-    formData.append('image', selectedFile.value);
-
-    try {
-        console.log('Simulating upload file:', selectedFile.value.name);
-        await new Promise((resolve) => setTimeout(resolve, 1500));
-        const result = { success: true };
-    } catch (error) {
-        console.error('Upload error:', error);
-    } finally {
-        uploading.value = false;
-        selectedFile.value = null;
-    }
-};
-
-const { data: images, pending: imagesPending, error: imagesError, refresh: fetchImages } = await useAsyncData(
-    'admin-gallery-images',
+const { data: images, pending: imagesPending, error: imagesError } = await useAsyncData(
+    'all-gallery-images',
     async () => {
-        await new Promise((resolve) => setTimeout(resolve, 800));
-        const sampleImages = [
-            { id: 'img1', url: 'https://res.cloudinary.com/dbonwxmgl/image/upload/v1746077761/pjbl4okuzh5puywoxj9i.jpg' },
-            { id: 'img2', url: 'https://res.cloudinary.com/dbonwxmgl/image/upload/v1746077761/xtdthqbilmkbzdzrnluy.jpg' },
-            { id: 'img3', url: 'https://res.cloudinary.com/dbonwxmgl/image/upload/v1746077762/vmtavyqywh98r2tikoiv.jpg' },
-        ];
-        return sampleImages;
+        const response = await $fetch(`${config.public.apiBase}/gallery-images`);
+        if (!response) {
+            console.warn('Empty or null response received for gallery images.');
+            return [];
+        }
+        return response;
     }
 );
 
+const totalPages = computed(() => {
+    if (!images.value) return 0;
+    return Math.ceil(images.value.length / itemsPerPage.value);
+});
+
+const paginatedImages = computed(() => {
+    if (!images.value) {
+        console.warn('Images data not loaded yet for pagination slicing.');
+        return [];
+    }
+    const start = (currentPage.value - 1) * itemsPerPage.value;
+    const end = start + itemsPerPage.value;
+    return images.value.slice(start, end);
+});
+
+watch(images, () => {
+    currentPage.value = 1;
+}, { deep: true });
+
+const goToPage = (page) => {
+    if (page >= 1 && page <= totalPages.value) {
+        currentPage.value = page;
+        if (process.client) {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    }
+};
+
+const nextPage = () => {
+    if (currentPage.value < totalPages.value) {
+        goToPage(currentPage.value + 1);
+    }
+};
+
+const prevPage = () => {
+    if (currentPage.value > 1) {
+        goToPage(currentPage.value - 1);
+    }
+};
+
 useHead({
-    title: 'Image Gallery Management - Admin',
+    title: 'Bộ sưu tập Ảnh - Plant Shop',
+    meta: [
+        { name: 'description', content: 'Khám phá bộ sưu tập ảnh cây cảnh của chúng tôi.' },
+        { property: 'og:title', content: 'Bộ sưu tập Ảnh - Plant Shop' },
+        { property: 'og:description', content: 'Khám phá bộ sưu tập ảnh cây cảnh của chúng tôi.' },
+        { property: 'og:image', content: '/social-share-image.jpg' },
+        { property: 'og:url', content: `${config.public.apiBase}/gallery` }
+    ]
 });
 </script>
+
+<style scoped>
+</style>

@@ -1,6 +1,6 @@
 <template>
     <div class="container mx-auto px-4 py-8 md:py-12 lg:py-16">
-        <h1 class="text-3xl md:text-4xl font-bold text-center text-white mb-8 md:mb-12">Contact Us</h1>
+        <h1 class="text-3xl md:text-4xl font-bold text-center text-gray-600 mb-8 md:mb-12">Contact Us</h1>
 
         <section class="bg-white rounded-lg shadow-xl p-6 md:p-8 lg:p-10 mb-12">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start">
@@ -66,7 +66,7 @@
         </section>
 
         <section class="text-center mb-12">
-            <h2 class="text-2xl md:text-3xl font-semibold text-white mb-6">Connect With Us</h2>
+            <h2 class="text-2xl md:text-3xl font-semibold text-gray-600 mb-6">Connect With Us</h2>
             <div class="flex justify-center space-x-6 md:space-x-8 text-white">
                 <a href="https://www.facebook.com/yourplantshop" target="_blank" aria-label="Follow us on Facebook" class="hover:text-white transform hover:scale-110 transition-all duration-300">
                     <img src="https://res.cloudinary.com/dbonwxmgl/image/upload/v1746092376/qgx8ou1dbf4ogr7g6bmw.png" alt="Facebook Logo" class="h-8 w-8" />

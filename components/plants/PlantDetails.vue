@@ -2,19 +2,19 @@
     <div class="container mx-auto px-4 py-8">
         <div v-if="plantPending" class="text-center py-12">
             <LoadingSpinner class="w-10 h-10 text-green-600 mx-auto" />
-            <p class="mt-4 text-gray-700">Loading plant information...</p>
+            <p class="mt-4 text-gray-700">Đang tải thông tin cây...</p>
         </div>
 
         <div v-else-if="plantError" class="text-center text-red-500 py-12">
-            <p>Error loading plant information: {{ plantError.message }}</p>
-            <p class="mt-2">Please try again later or contact support.</p>
+            <p>Lỗi khi tải thông tin cây: {{ plantError.message }}</p>
+            <p class="mt-2">Vui lòng thử lại sau hoặc liên hệ hỗ trợ.</p>
         </div>
 
         <div v-else-if="!plant" class="text-center text-gray-600 py-12">
-            <p class="text-xl font-semibold">Plant not found.</p>
-            <p class="mt-2">The plant ID may be incorrect or the plant does not exist.</p>
+            <p class="text-xl font-semibold">Không tìm thấy cây này.</p>
+            <p class="mt-2">Mã cây có thể không đúng hoặc cây không tồn tại.</p>
             <NuxtLink to="/plants" class="mt-4 inline-block text-primary hover:underline">
-                Back to plant list
+                Quay lại danh sách cây
             </NuxtLink>
         </div>
 
@@ -25,12 +25,12 @@
                         v-if="plant.imageUrl"
                         :src="plant.imageUrl"
                         :alt="'Image of ' + plant.name"
-                        class="w-full h-auto object-cover rounded-lg shadow-md"
+                        class="w-full h-auto object-cover rounded-lg shadow-md max-w-[800px] max-h-[600px]"
                         sizes="sm:100vw md:50vw lg:400px"
                         quality="80"
                     />
                     <div v-else class="w-full h-64 md:h-80 bg-gray-200 rounded-lg flex items-center justify-center text-gray-500">
-                        No image available
+                        Không có ảnh
                     </div>
                 </div>
 
@@ -40,19 +40,19 @@
                     </div>
 
                     <div>
-                        <h2 class="text-xl font-semibold text-green-700 mb-2">Description</h2>
-                        <p class="text-gray-700 leading-relaxed">{{ plant.description || 'No detailed description available.' }}</p>
+                        <h2 class="text-xl font-semibold text-green-700 mb-2">Mô tả</h2>
+                        <p class="text-gray-700 leading-relaxed">{{ plant.description || 'Chưa có mô tả chi tiết.' }}</p>
                     </div>
 
                     <div>
-                        <h2 class="text-xl font-semibold text-green-700 mb-2">Price</h2>
+                        <h2 class="text-xl font-semibold text-green-700 mb-2">Giá</h2>
                         <p class="text-2xl font-bold text-primary">{{ formatCurrency(plant.price) }}</p>
                     </div>
 
                     <div class="mt-8">
-                        <button class="bg-primary text-green-500 text-lg font-semibold px-8 py-3 rounded-full hover:bg-primary-dark transition-colors shadow-lg">
-                            Call to Action
-                        </button>
+                        <a href="https://zalo.me/0356356497" target="_blank" rel="noopener noreferrer" class="bg-primary text-gray-800 bg-gray-200 text-lg font-semibold px-8 py-3 rounded-full hover:bg-primary-dark hover:bg-green-500 hover:text-white transition-colors shadow-lg">
+                            Liên hệ để mua
+                        </a>
                     </div>
                 </div>
             </div>
@@ -61,27 +61,21 @@
 </template>
 
 <script setup>
-import { useRoute, useAsyncData } from '#app';
 import { ref } from 'vue';
 import LoadingSpinner from '~/components/common/LoadingSpinner.vue';
 
-const samplePlants = [
-    { id: '1', name: 'Monstera Deliciosa', description: 'Popular and easy to care for, known for its unique split leaves.', price: 250000, imageUrl: 'https://res.cloudinary.com/dbonwxmgl/image/upload/v17046003295/isljuytzamjj4kc2jrzb.png' },
-    { id: '2', name: 'Calathea Orbifolia', description: 'Beautiful round, striped leaves that move with the light.', price: 180000, imageUrl: 'https://res.cloudinary.com/dbonwxmgl/image/upload/v17046003295/isljuytzamjj4kc2jrzb.png' },
-    { id: '3', name: 'Snake Plant', description: 'Very resilient and great at filtering indoor air pollutants. Ideal for beginners.', price: 100000, imageUrl: 'https://res.cloudinary.com/dbonwxmgl/image/upload/v17046003295/isljuytzamjj4kc2jrzb.png' },
-    { id: '4', name: 'Fiddle Leaf Fig', description: 'A trendy houseplant known for its large, violin-shaped leaves. Can be finicky.', price: 300000, imageUrl: 'https://res.cloudinary.com/dbonwxmgl/image/upload/v17046003295/isljuytzamjj4kc2jrzb.png' },
-    { id: '5', name: 'ZZ Plant', description: 'Extremely drought-tolerant and low-maintenance, perfect for low-light conditions.', price: 150000, imageUrl: 'https://res.cloudinary.com/dbonwxmgl/image/upload/v17046003295/isljuytzamjj4kc2jrzb.png' },
-    { id: '6', name: 'Peace Lily', description: 'Graceful plant with dark green leaves and elegant white flowers. Indicates when it needs water by drooping.', price: 120000, imageUrl: 'https://res.cloudinary.com/dbonwxmgl/image/upload/v17046003295/isljuytzamjj4kc2jrzb.png' },
-];
-
+const config = useRuntimeConfig();
 const route = useRoute();
 const plantId = route.params.id;
 
 const { data: plant, pending: plantPending, error: plantError } = await useAsyncData(
     `plant-${plantId}`,
     async () => {
-        await new Promise(resolve => setTimeout(resolve, 500));
-        return samplePlants.find(p => p.id === plantId);
+        const response = await $fetch(`${config.public.apiBase}/plants/${plantId}`);
+        if (!response) {
+            throw new Error('Plant not found or empty response.');
+        }
+        return response;
     }
 );
 
@@ -93,18 +87,18 @@ const formatCurrency = (value) => {
 };
 
 useHead(() => {
-    const plantName = plant.value ? plant.value.name : 'Plant';
-    const description = plant.value ? plant.value.description : 'Detailed information about plants.';
+    const plantName = plant.value ? plant.value.name : 'Cây cảnh';
+    const description = plant.value ? plant.value.description : 'Thông tin chi tiết về các loại cây cảnh.';
     const imageUrl = plant.value && plant.value.imageUrl ? plant.value.imageUrl : '/social-share-image.jpg';
 
     return {
-        title: `${plantName} - Plant Details`,
+        title: `${plantName} - Chi tiết Cây cảnh`,
         meta: [
             { name: 'description', content: description },
-            { property: 'og:title', content: `${plantName} - Plant Details` },
+            { property: 'og:title', content: `${plantName} - Chi tiết Cây cảnh` },
             { property: 'og:description', content: description },
             { property: 'og:image', content: imageUrl },
-        ]
+        ],
     };
 });
 </script>

@@ -17,7 +17,7 @@ export default defineNuxtConfig({
         { name: 'description', content: 'A real-time fire monitoring and warning system for Data Centers.' }
       ],
       link: [
-        { rel: 'icon', type: 'image/png', href: 'https://res.cloudinary.com/dbonwxmgl/image/upload/v1746003119/ufe8eljibxt73lqwc2ut.png' }
+        { rel: 'icon', type: 'image/png', href: 'https://res.cloudinary.com/dbonwxmgl/image/upload/v1746146995/gpg18t1hvlrlvww9sw9j.png' }
       ]
     }
   },

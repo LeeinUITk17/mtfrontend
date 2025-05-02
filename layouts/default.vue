@@ -19,7 +19,7 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background-color: green;
+    background: linear-gradient(to right, #86efac, #d9f99d, #d9f99d);
     color: #333333;
 }
 </style>
