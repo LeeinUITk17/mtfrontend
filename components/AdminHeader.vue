@@ -3,11 +3,25 @@
         <div class="text-xl font-semibold text-gray-800">
             Dashboard
         </div>
+
         <div class="flex items-center space-x-4">
-            <span class="text-gray-700 text-sm hidden sm:block">Hello, <span class="font-semibold">{{ user?.fullName || user?.username || 'Admin' }}</span></span>
-            <button @click="handleLogout" class="text-sm text-red-600 hover:underline">
-                Logout
-            </button>
+            <client-only>
+                <span class="text-gray-700 text-sm hidden sm:block">
+                    Chào, <span class="font-semibold">{{ user?.fullName || user?.username || 'Admin' }}</span>
+                </span>
+                <template #fallback>
+                    <span class="text-gray-700 text-sm hidden sm:block">Chào, <span class="font-semibold">Đang tải...</span></span>
+                </template>
+            </client-only>
+
+            <client-only>
+                <button @click="handleLogout" class="text-sm text-red-600 hover:underline">
+                    Đăng xuất
+                </button>
+                <template #fallback>
+                    <span class="text-sm text-gray-600">Đang tải...</span>
+                </template>
+            </client-only>
         </div>
     </div>
 </template>

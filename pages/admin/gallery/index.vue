@@ -1,7 +1,5 @@
 <template>
     <div class="container mx-auto px-4 py-8">
-        <h1 class="text-3xl md:text-4xl font-bold text-center text-green-700 mb-8">Bộ sưu tập Ảnh</h1>
-
         <div v-if="imagesPending" class="text-center py-12">
             <LoadingSpinner class="w-10 h-10 text-green-600 mx-auto" />
             <p class="mt-4 text-gray-700">Đang tải ảnh bộ sưu tập...</p>
@@ -58,6 +56,11 @@
 import { ref, computed, watch } from 'vue';
 import LoadingSpinner from '~/components/common/LoadingSpinner.vue';
 import ImagesGridWithModal from '~/components/gallery/ImagesGridWithModal.vue';
+
+definePageMeta({
+    layout: 'admin',
+    middleware: ['auth']
+});
 
 const config = useRuntimeConfig();
 
