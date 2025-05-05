@@ -5,7 +5,7 @@
             <p class="mt-4 text-gray-700">Đang tải thông tin cây...</p>
         </div>
 
-        <div v-else-if="plantError" class="text-center text-red-500 py-12">
+        <div v-else-if="plantError" class="text-center text-red-500 py-12 bg-red-50 border border-red-200 rounded">
             <p>Lỗi khi tải thông tin cây: {{ plantError.message }}</p>
             <p class="mt-2">Vui lòng thử lại sau hoặc liên hệ hỗ trợ.</p>
         </div>
@@ -18,40 +18,108 @@
             </NuxtLink>
         </div>
 
-        <div v-else class="bg-white rounded-lg shadow-xl overflow-hidden p-6 md:p-8">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start">
-                <div class="md:col-span-1">
-                    <NuxtImg
-                        v-if="plant.imageUrl"
-                        :src="plant.imageUrl"
-                        :alt="'Image of ' + plant.name"
-                        class="w-full h-auto object-cover rounded-lg shadow-md max-w-[800px] max-h-[600px]"
-                        sizes="sm:100vw md:50vw lg:400px"
-                        quality="80"
-                    />
-                    <div v-else class="w-full h-64 md:h-80 bg-gray-200 rounded-lg flex items-center justify-center text-gray-500">
-                        Không có ảnh
+        <div v-else class="bg-white rounded-lg shadow-xl overflow-hidden">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-0">
+                <div class="md:col-span-1 p-4 sm:p-6">
+                    <div v-if="plant.images && plant.images.length > 0" class="relative">
+                        <swiper-container
+                            ref="mainSwiperRef"
+                            class="main-swiper rounded-lg shadow-md border border-gray-200"
+                            :slides-per-view="1"
+                            :space-between="10"
+                            :navigation="true"
+                            :pagination="{ clickable: true }"
+                            :thumbs="{ swiper: thumbsSwiperInstance }"
+                            :loop="plant.images.length > 1"
+                        >
+                            <swiper-slide v-for="(image, index) in plant.images" :key="image.id || index">
+                                <NuxtImg
+                                    :src="image.url"
+                                    :alt="`${plant.name} - ảnh ${index + 1}`"
+                                    class="w-full h-auto max-h-[65vh] object-contain rounded-lg"
+                                    sizes="sm:100vw md:50vw lg:600px"
+                                    quality="85"
+                                    loading="lazy"
+                                    :draggable="false"
+                                />
+                            </swiper-slide>
+                        </swiper-container>
+
+                        <div v-if="plant.images.length > 1" class="mt-3">
+                            <swiper-container
+                                class="thumbs-swiper"
+                                init="false"
+                                :slides-per-view="4"
+                                :space-between="10"
+                                :free-mode="true"
+                                :watch-slides-progress="true"
+                            >
+                                <swiper-slide
+                                    v-for="(image, index) in plant.images"
+                                    :key="'thumb-' + (image.id || index)"
+                                    class="cursor-pointer rounded overflow-hidden border-2 border-transparent hover:border-primary transition-colors"
+                                >
+                                    <NuxtImg
+                                        :src="image.url"
+                                        :alt="`Thumbnail ${index + 1}`"
+                                        class="w-full h-16 md:h-20 object-cover"
+                                        sizes="80px"
+                                        quality="70"
+                                        loading="lazy"
+                                    />
+                                </swiper-slide>
+                            </swiper-container>
+                        </div>
+                    </div>
+
+                    <div v-else class="w-full h-64 md:h-80 bg-gray-100 rounded-lg flex items-center justify-center text-gray-400 border border-gray-200">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
                     </div>
                 </div>
 
-                <div class="md:col-span-1 space-y-6">
+                <div class="md:col-span-1 p-6 md:p-8 space-y-6">
                     <div>
                         <h1 class="text-3xl md:text-4xl font-bold text-green-800">{{ plant.name }}</h1>
+                        <p v-if="plant.category" class="text-sm text-gray-500 mt-1">
+                            Danh mục:
+                            <NuxtLink :to="`/categories/${plant.category.id}`" class="text-primary hover:underline">
+                                {{ plant.category.name }}
+                            </NuxtLink>
+                        </p>
                     </div>
 
                     <div>
-                        <h2 class="text-xl font-semibold text-green-700 mb-2">Mô tả</h2>
-                        <p class="text-gray-700 leading-relaxed">{{ plant.description || 'Chưa có mô tả chi tiết.' }}</p>
+                        <h2 class="text-xl font-semibold text-green-700 mb-2 border-b pb-1">Mô tả</h2>
+                        <div v-if="plant.description" class="prose prose-sm max-w-none text-gray-700 leading-relaxed" v-html="plant.description"></div>
+                        <p v-else class="text-gray-600 italic">Chưa có mô tả chi tiết.</p>
                     </div>
 
-                    <div>
-                        <h2 class="text-xl font-semibold text-green-700 mb-2">Giá</h2>
-                        <p class="text-2xl font-bold text-primary">{{ formatCurrency(plant.price) }}</p>
+                    <div class="flex items-baseline space-x-4">
+                        <div>
+                            <h2 class="text-lg font-semibold text-green-700 mb-1">Giá</h2>
+                            <p class="text-2xl font-bold text-primary">{{ formatCurrency(plant.price) }}</p>
+                        </div>
+                        <div v-if="plant.stock != null">
+                            <h2 class="text-lg font-semibold text-gray-700 mb-1">Tồn kho</h2>
+                            <p :class="['text-lg font-semibold', plant.stock > 0 ? 'text-green-600' : 'text-red-600']">
+                                {{ plant.stock > 0 ? `Còn hàng (${plant.stock})` : 'Hết hàng' }}
+                            </p>
+                        </div>
                     </div>
 
-                    <div class="mt-8">
-                        <a href="https://zalo.me/0356356497" target="_blank" rel="noopener noreferrer" class="bg-primary text-gray-800 bg-gray-200 text-lg font-semibold px-8 py-3 rounded-full hover:bg-primary-dark hover:bg-green-500 hover:text-white transition-colors shadow-lg">
-                            Liên hệ để mua
+                    <div class="mt-8 pt-6 border-t">
+                        <a
+                            href="https://zalo.me/0356356497"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="inline-flex items-center justify-center bg-primary text-gray-800 bg-gray-200 text-lg font-semibold px-8 py-3 rounded-full hover:bg-primary-dark hover:bg-green-500 hover:text-white transition-colors duration-300 shadow-lg w-full sm:w-auto text-center"
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M16.75 13.96c.25.13.42.2.55.38a.87.87 0 0 1 .18.55v.45c0 .18-.07.38-.15.55a1.36 1.36 0 0 1-.5.58c-.4.34-.85.58-1.35.7a4 4 0 0 1-1.6.2c-.4 0-.8-.02-1.15-.07a8.7 8.7 0 0 1-3.4-1.4 13.2 13.2 0 0 1-3.2-2.9 12.1 12.1 0 0 1-2-3.6c-.2-.5-.3-1-.3-1.5v-.2c0-.2.03-.4.08-.6a1.8 1.8 0 0 1 .7-1.1c.2-.2.4-.3.6-.3h.4a.7.7 0 0 1 .6.3c.1.1.2.3.3.5l.8 1.8c.1.3.2.6.2.9 0 .3-.1.6-.2.8l-.5.9a.4.4 0 0 0 0 .5c.1.2.3.5.6.8a5.9 5.9 0 0 0 2.1 1.9c.3.2.6.4.8.6l.9-.5c.2-.1.5-.2.8-.2.3 0 .6.1.9.2l1.7.8c.3.1.5.2.6.4Zm-3.2-8.2a5.5 5.5 0 0 0-5.2 3.5 7.4 7.4 0 0 0 .2 4.7 10.6 10.6 0 0 0 2.7 3.8 11.5 11.5 0 0 0 4.1 2.7 7.5 7.5 0 0 0 4.6.3 5.5 5.5 0 0 0 3.5-5.2 5.6 5.6 0 0 0-1.5-4A5.5 5.5 0 0 0 13.5 5.8Zm0-2.3A7.8 7.8 0 0 1 21 11.6a8 8 0 0 1-2.1 5.7 10.1 10.1 0 0 1-6.2.4 13.8 13.8 0 0 1-5.4-3.5 14.2 14.2 0 0 1-3.5-5.4 9.8 9.8 0 0 1 .4-6.2A7.8 7.8 0 0 1 13.5 3.5Z" />
+                            </svg>
+                            Liên hệ Zalo để mua
                         </a>
                     </div>
                 </div>
@@ -61,35 +129,74 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted, watch } from 'vue';
+import { useRoute } from 'vue-router';
 import LoadingSpinner from '~/components/common/LoadingSpinner.vue';
+import { register } from 'swiper/element/bundle';
+
+register();
 
 const config = useRuntimeConfig();
 const route = useRoute();
 const plantId = route.params.id;
 
+const mainSwiperRef = ref(null);
+const thumbsSwiperInstance = ref(null);
+
 const { data: plant, pending: plantPending, error: plantError } = await useAsyncData(
-    `plant-${plantId}`,
+    `plant-detail-${plantId}`,
     async () => {
-        const response = await $fetch(`${config.public.apiBase}/plants/${plantId}`);
-        if (!response) {
-            throw new Error('Plant not found or empty response.');
+        try {
+            const response = await $fetch(`${config.public.apiBase}/plants/${plantId}`);
+            if (!response) {
+                throw createError({ statusCode: 404, statusMessage: 'Plant not found', fatal: true });
+            }
+            return response;
+        } catch (err) {
+            console.error('Error fetching plant detail:', err);
+            if (err.statusCode === 404) {
+                throw createError({ statusCode: 404, statusMessage: 'Plant not found', fatal: true });
+            }
+            throw createError({ statusCode: 500, statusMessage: 'Could not load plant data', fatal: true });
         }
-        return response;
     }
 );
 
 const formatCurrency = (value) => {
-    if (value == null) return 'N/A';
-    const numberValue = typeof value === 'string' ? parseFloat(value) : value;
-    if (isNaN(numberValue)) return 'N/A';
+    if (value == null) return '';
+    const numberValue = typeof value === 'string' ? parseFloat(value.replace(/,/g, '')) : Number(value);
+    if (isNaN(numberValue)) return '';
     return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(numberValue);
 };
 
+onMounted(() => {
+    watch(
+        plant,
+        (newPlant) => {
+            if (newPlant && newPlant.images && newPlant.images.length > 1) {
+                nextTick(() => {
+                    const thumbsSwiperEl = document.querySelector('.thumbs-swiper');
+                    if (thumbsSwiperEl && thumbsSwiperEl.initialize) {
+                        thumbsSwiperEl.initialize();
+                        thumbsSwiperInstance.value = thumbsSwiperEl.swiper;
+
+                        if (mainSwiperRef.value) {
+                            mainSwiperRef.value.swiper.thumbs.swiper = thumbsSwiperInstance.value;
+                            mainSwiperRef.value.swiper.thumbs.init();
+                            mainSwiperRef.value.swiper.thumbs.update();
+                        }
+                    }
+                });
+            }
+        },
+        { immediate: true }
+    );
+});
+
 useHead(() => {
-    const plantName = plant.value ? plant.value.name : 'Cây cảnh';
-    const description = plant.value ? plant.value.description : 'Thông tin chi tiết về các loại cây cảnh.';
-    const imageUrl = plant.value && plant.value.imageUrl ? plant.value.imageUrl : '/social-share-image.jpg';
+    const plantName = plant.value?.name ?? 'Cây cảnh';
+    const description = plant.value?.description?.substring(0, 155) ?? 'Thông tin chi tiết về các loại cây cảnh.';
+    const imageUrl = plant.value?.images?.[0]?.url ?? plant.value?.imageUrl ?? '/social-share-image.jpg';
 
     return {
         title: `${plantName} - Chi tiết Cây cảnh`,
@@ -103,5 +210,48 @@ useHead(() => {
 });
 </script>
 
-<style scoped>
+<style>
+swiper-container {
+    --swiper-theme-color: #10B981;
+    --swiper-navigation-color: #ffffff;
+    --swiper-navigation-size: 30px;
+    --swiper-pagination-color: var(--swiper-theme-color);
+    --swiper-pagination-bullet-inactive-color: #9ca3af;
+    --swiper-pagination-bullet-inactive-opacity: 0.5;
+    --swiper-pagination-bullet-size: 8px;
+    --swiper-pagination-bullet-horizontal-gap: 4px;
+}
+
+swiper-container::part(button-prev),
+swiper-container::part(button-next) {
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    transition: background-color 0.2s ease;
+}
+
+swiper-container::part(button-prev):hover,
+swiper-container::part(button-next):hover {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.thumbs-swiper swiper-slide {
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+    border: 2px solid transparent;
+    border-radius: 0.375rem;
+}
+
+.thumbs-swiper swiper-slide:hover {
+    opacity: 0.8;
+}
+
+.thumbs-swiper .swiper-slide-thumb-active {
+    opacity: 1;
+    border-color: var(--swiper-theme-color);
+}
+
+.prose {
+}
 </style>
