@@ -10,7 +10,7 @@ export default defineNuxtRouteMiddleware(async (to) => {
     }
 
     if (!isAuthenticated.value) {
-      const redirectPath = to.fullPath !== '/' ? to.fullPath : '/dashboard';
+      const redirectPath = to.fullPath !== '/' ? to.fullPath : '/admin';
       return navigateTo(`/login?redirect=${encodeURIComponent(redirectPath)}`, { replace: true });
     }
   }

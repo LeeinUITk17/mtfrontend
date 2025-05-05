@@ -10,7 +10,7 @@ export default defineNuxtRouteMiddleware(async (to) => {
     }
 
     if (isAuthenticated.value) {
-      return navigateTo('/dashboard', { replace: true });
+      return navigateTo('/admin', { replace: true });
     }
   }
 });

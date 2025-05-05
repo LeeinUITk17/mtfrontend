@@ -125,7 +125,7 @@ const handleLogin = async () => {
         if (result.success) {
             const route = useRoute();
             const redirect = route.query.redirect as string | undefined;
-            await navigateTo(redirect || '/dashboard', { replace: true });
+            await navigateTo(redirect || '/admin', { replace: true });
         } else {
             errorMessage.value = result.error || 'Login failed.';
         }

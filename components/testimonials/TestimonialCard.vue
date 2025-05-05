@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-white p-6 rounded-lg shadow-md">
+    <div class="p-6 rounded-lg shadow-md">
         <div class="flex items-center mb-4">
             <div>
                 <p class="font-semibold text-gray-800">{{ testimonial.customerName }}</p>
