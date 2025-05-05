@@ -1,12 +1,13 @@
+// nuxt.config.ts
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: false },
-  modules: ['@nuxtjs/tailwindcss', '@nuxt/image'],
+  modules: ['@nuxtjs/tailwindcss', '@nuxt/image', '@vite-pwa/nuxt'],
   ssr: true,
   runtimeConfig: {
     public: {
       apiBase: process.env.NUXT_PUBLIC_API_BASE || 'http://localhost:8000',
-      tinymceApiKey: process.env.NUXT_PUBLIC_TINYMCE_API_KEY  
+      tinymceApiKey: process.env.NUXT_PUBLIC_TINYMCE_API_KEY || '28rkvju16xf6zdoauaa2pzpyuu9ag7aba7dwb7udkad5q3nm'
     }
   },
   app: {
@@ -22,10 +23,10 @@ export default defineNuxtConfig({
       ]
     }
   },
-  css: [
-    '~/assets/css/tailwind.css', 
-],
-plugins: [
-  '~/plugins/ckeditor.client.ts',
-],
+  css: ['~/assets/css/tailwind.css'],
+  pwa: {
+    devOptions: {
+      enabled: false
+    }
+  }
 })
