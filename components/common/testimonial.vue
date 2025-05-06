@@ -1,7 +1,7 @@
 <template>
     <div class="relative w-full h-auto border-4 border-gray-600 rounded-2xl  text-gray-600 py-12">
         <div class="text-center mb-12">
-            <h2 class="text-3xl font-bold text-gray-600 mt-2">What they're saying about us</h2>
+            <h2 class="text-3xl font-bold text-gray-600 mt-2">Khách hàng nói gì về chúng tôi.</h2>
         </div>
         <div class="flex w-full overflow-hidden relative">
             <div
@@ -61,27 +61,27 @@
 import { ref, onMounted, onBeforeUnmount } from "vue";
 
 const testimonials = ref([
-    {
-        name: "Kaido",
-        message: "The plants from this shop are amazing! They transformed my garden into a paradise.",
-        role: "Kaidou of the Beasts",
-        avatar: "https://res.cloudinary.com/dbonwxmgl/image/upload/v1719120844/gdfgqtutjv2lteatix5d.jpg",
-        image:  "https://res.cloudinary.com/dbonwxmgl/image/upload/v1746077761/pjbl4okuzh5puywoxj9i.jpg",
-    },
-    {
-        name: "Monkey D. Garp",
-        message: "The plants here are top-notch! They make my garden look like a piece of art.",
-        role: "Marine Vice Admiral",
-        avatar: "https://res.cloudinary.com/dbonwxmgl/image/upload/v1718817087/z4nt0sdjlvhi3an5nqzz.jpg",
-        image:  "https://res.cloudinary.com/dbonwxmgl/image/upload/v1746077761/xtdthqbilmkbzdzrnluy.jpg",
-    },
-    {
-        name: "Roronoa Zoro",
-        message: "The plants I bought here are thriving beautifully! My home feels so much more alive and vibrant.",
-        role: "Pirate Hunter",
-        avatar: "https://res.cloudinary.com/dbonwxmgl/image/upload/v1718873734/zkzfapfwda9uglxrlqnr.jpg",
-        image: "https://res.cloudinary.com/dbonwxmgl/image/upload/v1746077762/vmtavyqywh98r2tikoiv.jpg",
-    },
+{
+    name: "Lê Thanh Tài",
+    message: "Những cây giống tôi mua tại đây phát triển rất tốt! Vườn nhà tôi nay tràn đầy sức sống và xanh mát hơn bao giờ hết.",
+    role: "Kỹ sư phần mềm & người yêu làm vườn",
+    avatar: "https://res.cloudinary.com/dbonwxmgl/image/upload/v1746526843/cvd3oeg2sg17nyq95upx.jpg",
+    image:  "https://res.cloudinary.com/dbonwxmgl/image/upload/v1746077761/pjbl4okuzh5puywoxj9i.jpg",
+  },
+  {
+    name: "Lê Thanh Tú",
+    message: "Cây giống ở đây rất chất lượng, dễ trồng và khỏe mạnh. Tôi đã giới thiệu cho nhiều người bạn cùng sở thích làm vườn.",
+    role: "Nhân viên văn phòng",
+    avatar: "https://res.cloudinary.com/dbonwxmgl/image/upload/v1746526843/m94ulibrxrhigmzh29io.jpg",
+    image:  "https://res.cloudinary.com/dbonwxmgl/image/upload/v1746077761/xtdthqbilmkbzdzrnluy.jpg",
+  },
+  {
+    name: "Lê Thanh Tuấn",
+    message: "Tôi rất hài lòng với dịch vụ và chất lượng cây giống ở đây. Khu vườn nhỏ của tôi giờ trông như một khu sinh thái thu nhỏ.",
+    role: "Nông dân trẻ",
+    avatar: "https://res.cloudinary.com/dbonwxmgl/image/upload/v1746526843/xs6t2yk0tzgmshl95smg.jpg",
+    image: "https://res.cloudinary.com/dbonwxmgl/image/upload/v1746077762/vmtavyqywh98r2tikoiv.jpg",
+  },
 ]);
 
 const activeIndex = ref(0);

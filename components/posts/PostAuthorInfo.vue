@@ -2,7 +2,7 @@
     <div class="bg-gray-100 rounded-lg p-6 text-center">
         <h3 class="text-xl font-bold text-gray-800 mb-4">Về tác giả</h3>
         <img
-            :src="user.avatar || 'https://res.cloudinary.com/dbonwxmgl/image/upload/v1746077761/pjbl4okuzh5puywoxj9i.jpg'"
+            :src='https://res.cloudinary.com/dbonwxmgl/image/upload/v1746077761/pjbl4okuzh5puywoxj9i.jpg'
             :alt="'Avatar của ' + (user.fullName || user.username)"
             class="w-24 h-24 rounded-full mx-auto object-cover border-4 border-white shadow-md"
         />

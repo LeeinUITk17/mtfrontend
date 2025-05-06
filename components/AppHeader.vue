@@ -1,5 +1,5 @@
 <template>
-    <header class="bg-gradient-to-r from-green-300 via-green-100 to-green-100 text-green-800 py-4 shadow-md">
+    <header class="bg-gradient-to-r from-green-600 via-green-500 to-green-600 text-white py-4 shadow-md">
         <nav class="container mx-auto px-4 flex items-center justify-between">
             <NuxtLink to="/" class="flex items-center hover:opacity-90 transition-opacity space-x-2 md:space-x-3">
                 <img
@@ -7,7 +7,7 @@
                     alt="Cây Giống Tuấn Anh Logo"
                     class="h-9 w-auto md:h-11 rounded-full shadow-sm"
                 >
-                <span class="text-xl md:text-2xl lg:text-3xl font-bold text-green-700">
+                <span class="text-xl md:text-2xl lg:text-3xl font-bold text-white">
                     Cây Giống Tuấn Anh
                 </span>
             </NuxtLink>
@@ -27,11 +27,11 @@
                 </button>
 
                 <ul class="hidden md:flex items-center space-x-6 text-lg font-semibold">
-                    <li class="border-2 p-1 border-green-300 rounded-xl"><HeaderItem title="Home" link="/" :active-link="route.path" /></li>
-                    <li class="border-2 p-1 border-green-300 rounded-xl"><HeaderItem title="Plants" link="/plants" :active-link="route.path" /></li>
-                    <li class="border-2 p-1 border-green-300 rounded-xl"><HeaderItem title="Posts" link="/posts" :active-link="route.path" /></li>
-                    <li class="border-2 p-1 border-green-300 rounded-xl"><HeaderItem title="Gallery" link="/gallery" :active-link="route.path" /></li>
-                    <li class="border-2 p-1 border-green-300 rounded-xl"><HeaderItem title="Contact" link="/contact" :active-link="route.path" /></li>
+                    <li class="border-2 p-1 border-green-300 rounded-xl"><HeaderItem title="Trang chủ" link="/" :active-link="route.path" /></li>
+                    <li class="border-2 p-1 border-green-300 rounded-xl"><HeaderItem title="Cây giống" link="/plants" :active-link="route.path" /></li>
+                    <li class="border-2 p-1 border-green-300 rounded-xl"><HeaderItem title="Bài viết" link="/posts" :active-link="route.path" /></li>
+                    <li class="border-2 p-1 border-green-300 rounded-xl"><HeaderItem title="Hình ảnh " link="/gallery" :active-link="route.path" /></li>
+                    <li class="border-2 p-1 border-green-300 rounded-xl"><HeaderItem title="Liên hệ" link="/contact" :active-link="route.path" /></li>
                     <!-- <li v-if="isAuthenticated">
                         <NuxtLink
                             to="/admin"

@@ -52,27 +52,27 @@
   }
   
   const slides: Slide[] = [
-    {
-      title: "Welcome to Green Haven",
-      description: "Explore a wide variety of plants for your home and garden.",
-      buttonText: "Shop Plants",
-      link: "/shop",
-      image: "https://res.cloudinary.com/dbonwxmgl/image/upload/v1746077762/gryyvyt2icj8pasisd80.jpg",
-    },
-    {
-      title: "Exclusive Plant Care Tips",
-      description: "Learn how to take care of your plants like a pro.",
-      buttonText: "Learn More",
-      link: "/care-tips",
-      image: "https://res.cloudinary.com/dbonwxmgl/image/upload/v1746077766/tic4dil5kzefok4conki.jpg",
-    },
-    {
-      title: "Join Our Plant Lovers Community",
-      description: "Connect with fellow plant enthusiasts and share your journey.",
-      buttonText: "Join Now",
-      link: "/community",
-      image: "https://res.cloudinary.com/dbonwxmgl/image/upload/v1746077762/f4uz4lqifowwsup2j4nt.jpg",
-    },
+  {
+    title: "Chào mừng đến với Vườn Cây Giống Xanh Tươi",
+    description: "Khám phá các loại cây giống chất lượng cho khu vườn và nông trại của bạn.",
+    buttonText: "Xem Cây Giống",
+    link: "/plants",
+    image: "https://res.cloudinary.com/dbonwxmgl/image/upload/v1746077762/gryyvyt2icj8pasisd80.jpg",
+  },
+  {
+    title: "Chia Sẻ Kinh Nghiệm Trồng Cây",
+    description: "Học cách chăm sóc và phát triển cây giống hiệu quả từ những người làm vườn chuyên nghiệp.",
+    buttonText: "Đọc Bài Viết",
+    link: "/posts",
+    image: "https://res.cloudinary.com/dbonwxmgl/image/upload/v1746077766/tic4dil5kzefok4conki.jpg",
+  },
+  {
+    title: "Tham Quan Vườn Cây Giống Của Chúng Tôi",
+    description: "Xem những hình ảnh thực tế từ vườn cây và khách hàng của chúng tôi.",
+    buttonText: "Xem Thư Viện Ảnh",
+    link: "/gallery",
+    image: "https://res.cloudinary.com/dbonwxmgl/image/upload/v1746077762/f4uz4lqifowwsup2j4nt.jpg",
+  },
   ];
 
   

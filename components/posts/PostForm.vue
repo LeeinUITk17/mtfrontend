@@ -64,17 +64,24 @@
             </div>
 
             <div class="space-y-1" v-if="!isEditMode">
-                <label class="block text-sm font-medium text-gray-700">
-                    Hình ảnh bài viết (Tùy chọn)
-                </label>
+            <label class="block text-sm font-medium text-gray-700">
+                Hình ảnh bài viết (Tùy chọn)
+            </label>
+            <ClientOnly>
                 <PostImageUploader
                     :multiple="true"
                     inputName="images"
                     v-model="selectedImageFiles"
                     :maxFileSizeMB="5"
                 />
-                <p class="mt-1 text-xs text-gray-500">Chọn một hoặc nhiều ảnh cho bài viết.</p>
-            </div>
+                 <template #fallback>
+                    <div class="h-20 border-2 border-dashed border-gray-300 rounded-md flex items-center justify-center text-sm text-gray-400">
+                        Loading image uploader...
+                    </div>
+                </template>
+            </ClientOnly>
+            <p class="mt-1 text-xs text-gray-500">Chọn một hoặc nhiều ảnh cho bài viết.</p>
+        </div>
 
             <div class="flex justify-end pt-2 space-x-3">
                 <NuxtLink
@@ -147,6 +154,15 @@ const messageType = ref('error');
 const editorRef = ref(null);
 const isEditorReady = ref(false);
 const rateLevels = ['low', 'medium', 'high'];
+
+const resetForm = () => {
+    Object.assign(formData, { title: '', content: '', rating: 'low' });
+    selectedImageFiles.value = [];
+    if (editorRef.value) {
+        editorRef.value.setContent('');
+    }
+    message.value = null;
+};
 
 const buttonText = computed(() =>
     loading.value ? 'Đang xử lý...' : props.isEditMode ? 'Cập nhật bài viết' : 'Đăng bài viết'
@@ -300,14 +316,6 @@ const handleError = (error) => {
     Swal.fire({ icon: 'error', title: 'Lỗi!', text: errorMessage });
 };
 
-const resetForm = () => {
-    Object.assign(formData, { title: '', content: '', rating: 'low' });
-    selectedImageFiles.value = [];
-    if (editorRef.value) {
-        editorRef.value.setContent('');
-    }
-    message.value = null;
-};
 </script>
 
 <style scoped>
