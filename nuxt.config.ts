@@ -7,7 +7,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       apiBase: process.env.NUXT_PUBLIC_API_BASE || 'http://localhost:8000',
-      tinymceApiKey: process.env.NUXT_PUBLIC_TINYMCE_API_KEY || '28rkvju16xf6zdoauaa2pzpyuu9ag7aba7dwb7udkad5q3nm'
+      tinymceApiKey: process.env.NUXT_PUBLIC_TINYMCE_API_KEY
     }
   },
   app: {

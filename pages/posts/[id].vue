@@ -50,8 +50,8 @@
             <div class="mt-8 pt-6 border-t border-gray-100">
               <p class="text-sm font-medium text-gray-600 mb-2">Chia sẻ bài viết:</p>
               <div class="flex space-x-3">
-                <a href="#" aria-label="Share on Facebook" class="text-gray-400 hover:text-blue-600 transition-colors"></a>
-                <a href="#" aria-label="Share on Zalo" class="text-gray-400 hover:text-blue-500 transition-colors"></a>
+                <a href="https://www.facebook.com/caosugiongtuananh" aria-label="Share on Facebook" class="text-gray-400 hover:text-blue-600 transition-colors"><img src="https://res.cloudinary.com/dbonwxmgl/image/upload/v1746092376/qgx8ou1dbf4ogr7g6bmw.png" alt="Facebook Logo" class="h-7 w-7" /></a>
+                <a href="https://zalo.me/0979072768" aria-label="Share on Zalo" class="text-gray-400 hover:text-blue-500 transition-colors"><img src="https://res.cloudinary.com/dbonwxmgl/image/upload/v1746092376/oiuvdbnx2i8xidl7c6ry.png" alt="Zalo Logo" class="h-7 w-7" /></a>
               </div>
             </div>
           </div>
@@ -120,7 +120,7 @@ const { data: relatedPosts, pending: relatedPostsPending, error: relatedPostsErr
     try {
       const posts = await $fetch(`${config.public.apiBase}/posts`, {
         query: {
-          limit: 3,
+          limit: 2,
           excludeId: postId,
         },
       });

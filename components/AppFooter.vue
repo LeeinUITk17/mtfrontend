@@ -10,13 +10,13 @@
             Khám phá, Chia sẻ & Nuôi dưỡng niềm đam mê cây xanh của bạn với chúng tôi.
           </p>
           <div class="flex justify-center md:justify-start space-x-6 mt-4">
-            <a href="#" aria-label="Facebook" class="hover:text-white transition-colors duration-300">
+            <a href="https://www.facebook.com/caosugiongtuananh" aria-label="Facebook" class="hover:text-white transition-colors duration-300">
               <img src="https://res.cloudinary.com/dbonwxmgl/image/upload/v1746092376/qgx8ou1dbf4ogr7g6bmw.png" alt="Facebook Logo" class="h-9 w-9" />
             </a>
-            <a href="#" aria-label="Youtube" class="hover:text-white transition-colors duration-300">
+            <a href="https://www.youtube.com/@tailee21417" aria-label="Youtube" class="hover:text-white transition-colors duration-300">
               <img src="https://res.cloudinary.com/dbonwxmgl/image/upload/v1746092376/skrccs2d36g5hmixyfrw.png" alt="Youtube Logo" class="h-9 w-9" />
             </a>
-            <a href="#" aria-label="Zalo" class="hover:text-white transition-colors duration-300">
+            <a href="https://zalo.me/0979072768" aria-label="Zalo" class="hover:text-white transition-colors duration-300">
               <img src="https://res.cloudinary.com/dbonwxmgl/image/upload/v1746092376/oiuvdbnx2i8xidl7c6ry.png" alt="Zalo Logo" class="h-9 w-9 bg-white rounded" />
             </a>
           </div>
@@ -34,9 +34,9 @@
         <div class="text-center md:text-left">
           <h3 class="text-lg font-semibold mb-4 text-white">Thông tin liên hệ</h3>
           <ul class="space-y-2">
-            <li class="opacity-90"><strong>Email:</strong> contact@plantshop.com</li>
+            <li class="opacity-90"><strong>Email:</strong> tu.lethanh.2810@gmail.com</li>
             <li class="opacity-90"><strong>Điện thoại:</strong> 0979 072 768</li>
-            <li class="opacity-90"><strong>Địa chỉ:</strong> Số 123, Đường Cây Xanh, TP. Hồ Chí Minh</li>
+            <li class="opacity-90"><strong>Địa chỉ:</strong> Khu phố 07, Huyện Chơn Thành, Tỉnh Bình Phước</li>
           </ul>
         </div>
         <div class="text-center md:text-left">

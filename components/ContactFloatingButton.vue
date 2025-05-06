@@ -15,7 +15,7 @@
                     <img src="https://res.cloudinary.com/dbonwxmgl/image/upload/v1746092376/oiuvdbnx2i8xidl7c6ry.png" alt="Zalo Logo" class="h-7 w-7" />
                 </a>
                 <a
-                    href="https://www.facebook.com/yourfanpage"
+                    href="https://www.facebook.com/caosugiongtuananh"
                     target="_blank"
                     class="w-10 h-10 bg-white text-white rounded-full shadow flex items-center justify-center hover:bg-blue-700 transition-colors duration-200"
                     aria-label="Follow on Facebook"
@@ -24,7 +24,7 @@
                     <img src="https://res.cloudinary.com/dbonwxmgl/image/upload/v1746092376/qgx8ou1dbf4ogr7g6bmw.png" alt="Facebook Logo" class="h-7 w-7" />
                 </a>
                 <a
-                    href="https://www.youtube.com/yourchannel"
+                    href="https://www.youtube.com/@tailee21417"
                     target="_blank"
                     class="w-10 h-10 bg-white text-white rounded-full shadow flex items-center justify-center hover:bg-red-700 transition-colors duration-200"
                     aria-label="Follow on YouTube"
@@ -33,7 +33,7 @@
                     <img src="https://res.cloudinary.com/dbonwxmgl/image/upload/v1746092376/skrccs2d36g5hmixyfrw.png" alt="YouTube Logo" class="h-7 w-7" />
                 </a>
                 <a
-                    href="https://www.google.com/maps/place/Nh%C3%A0+Ga+B%E1%BA%BFn+Xe+Su%E1%BB%91i+Ti%C3%AAn/@10.8700062,106.7618543,13z/data=!4m22!1m15!4m14!1m6!1m2!1s0x317527587e9ad5bf:0xafa66f9c8be3c91!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBDw7RuZyBuZ2jhu4cgVGjDtG5nIHRpbiAtIMSQSFFHIFRQLkhDTSwgSMOgbiBUaHV5w6puLCBraHUgcGjhu5EgNiBQLCBMaW5oIFRydW5nLCBUaOG7pyDEkOG7qWMsIEjhu5MgQ2jDrSBNaW5o!2m2!1d106.8030541!2d10.8700089!1m6!1m2!1s0x317527587e9ad5bf:0xafa66f9c8be3c91!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBDw7RuZyBuZ2jhu4cgVGjDtG5nIHRpbiAtIMSQSFFHIFRQLkhDTSwgSMOgbiBUaHV5w6puLCBraHUgcGjhu5EgNiBQLCBUaOG7pyDEkOG7qWMsIEjhu5MgQ2jDrSBNaW5oLCBWaeG7h3QgTmFt!2m2!1d106.8030541!2d10.8700089!3m5!1s0x3174d8ad97e3301f:0x86f901230f1bcc0f!8m2!3d10.8795175!4d106.8141018!16s%2Fg%2F11wx9ykt1w?entry=ttu&g_ep=EgoyMDI1MDQyOC4wIKXMDSoASAFQAw%3D%3D"
+                    href="https://www.google.com/maps/place/Nh%C3%A0+v%C4%83n+h%C3%B3a+khu+ph%E1%BB%91+4/@11.428879,106.3867057,11z/data=!4m9!1m2!2m1!1zS2h1IHBo4buRIDA3LCBIdXnhu4duIENoxqFuIFRow6BuaCwgVOG7iW5oIELDrG5oIFBoxrDhu5tj!3m5!1s0x3174ad003c2c9b23:0x4857ff7ec4e5e056!8m2!3d11.4289184!4d106.5587397!16s%2Fg%2F11xcnjcdlp?entry=ttu&g_ep=EgoyMDI1MDQzMC4xIKXMDSoASAFQAw%3D%3D"
                     target="_blank"
                     class="w-10 h-10 bg-white text-white rounded-full shadow flex items-center justify-center hover:bg-gray-700 transition-colors duration-200"
                     aria-label="View store location on map"

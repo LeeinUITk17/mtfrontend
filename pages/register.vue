@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
     <div class="max-w-sm mx-auto py-8 md:py-12 lg:py-16">
         <div class="bg-white p-8 rounded-lg shadow-xl border border-gray-200">
             <h2 class="mt-2 text-center text-3xl font-bold text-green-800">
@@ -219,4 +219,87 @@ useHead({
 </script>
 
 <style scoped>
-</style>
+</style> -->
+
+
+<template>
+    <div class="flex flex-col items-center justify-center min-h-screen bg-gray-100 text-center px-4">
+      <div class="bg-white p-8 md:p-12 lg:p-16 rounded-xl shadow-lg border border-gray-200 max-w-2xl w-full">
+        <!-- Icon Bảo trì (Ví dụ: dùng Heroicons hoặc SVG khác) -->
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 md:h-20 md:w-20 text-yellow-500 mx-auto mb-6 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+        </svg>
+  
+        <!-- Tiêu đề -->
+        <h1 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+          Website đang bảo trì
+        </h1>
+  
+        <!-- Nội dung thông báo -->
+        <p class="text-lg text-gray-600 leading-relaxed mb-8">
+          Chúng tôi đang thực hiện một số nâng cấp để cải thiện hệ thống và mang lại trải nghiệm tốt hơn cho bạn. Website sẽ sớm hoạt động trở lại bình thường.
+          <br />
+          Xin chân thành xin lỗi vì sự bất tiện này!
+        </p>
+  
+        <!-- (Tùy chọn) Thời gian dự kiến -->
+        <!--
+        <p class="text-sm text-gray-500 mb-8">
+          Dự kiến hoàn thành trong khoảng: <span class="font-medium">[Thời gian dự kiến, ví dụ: 30 phút]</span>
+        </p>
+        -->
+  
+        <!-- (Tùy chọn) Thông tin liên hệ -->
+        <div class="text-sm text-gray-600 border-t border-gray-200 pt-6">
+          <p class="mb-2">Nếu bạn cần hỗ trợ gấp, vui lòng liên hệ:</p>
+          <p>
+            Email: <a href="mailto:hotro@caygiongtuananh.com" class="text-blue-600 hover:underline">hotro@caygiongtuananh.com</a>
+          </p>
+          <p>
+            Điện thoại/Zalo: <a href="tel:0979072768" class="text-blue-600 hover:underline">0979 072 768</a>
+          </p>
+           <!-- Thêm link mạng xã hội nếu muốn -->
+           <!--
+           <div class="mt-4 flex justify-center space-x-4">
+               <a href="..." aria-label="Facebook" class="text-gray-400 hover:text-blue-600"> <svg>...</svg> </a>
+               <a href="..." aria-label="Zalo" class="text-gray-400 hover:text-blue-500"> <svg>...</svg> </a>
+           </div>
+           -->
+        </div>
+      </div>
+  
+      <!-- Footer nhỏ (Tùy chọn) -->
+      <footer class="mt-8 text-xs text-gray-500">
+        © {{ new Date().getFullYear() }} Cây Giống Tuấn Anh. All rights reserved.
+      </footer>
+    </div>
+  </template>
+  
+  <script setup>
+  // Đặt layout thành false nếu bạn không muốn header/footer mặc định hiển thị
+  // Hoặc tạo một layout riêng 'minimal' chỉ có nội dung chính
+  definePageMeta({
+    layout: false // Bỏ layout mặc định (nếu có header/footer)
+  });
+  
+  useHead({
+    title: 'Website đang bảo trì - Cây Giống Tuấn Anh',
+    meta: [
+      { name: 'description', content: 'Website đang trong quá trình bảo trì để nâng cấp. Vui lòng quay lại sau.' },
+      // Ngăn công cụ tìm kiếm index trang này (quan trọng)
+      { name: 'robots', content: 'noindex, nofollow' }
+    ]
+  });
+  </script>
+  
+  <style scoped>
+  /* Thêm style tùy chỉnh nếu cần */
+  /* Ví dụ: Animation cho icon */
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+  }
+  .animate-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  </style>
