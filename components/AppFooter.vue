@@ -2,6 +2,7 @@
   <footer class="bg-green-800 text-green-100 py-12 md:py-16">
     <div class="container mx-auto px-6">
       <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <!-- Logo and Description -->
         <div class="space-y-4 text-center md:text-left">
           <div class="text-3xl md:text-4xl font-extrabold tracking-wider text-white mb-2">
             <span class="inline-block align-middle mr-2">🌱 Cây giống</span> Tuấn Anh
@@ -10,35 +11,117 @@
             Khám phá, Chia sẻ & Nuôi dưỡng niềm đam mê cây xanh của bạn với chúng tôi.
           </p>
           <div class="flex justify-center md:justify-start space-x-6 mt-4">
-            <a href="https://www.facebook.com/caosugiongtuananh" aria-label="Facebook" class="hover:text-white transition-colors duration-300">
-              <img src="https://res.cloudinary.com/dbonwxmgl/image/upload/v1746092376/qgx8ou1dbf4ogr7g6bmw.png" alt="Facebook Logo" class="h-9 w-9" />
+            <a
+              href="https://www.facebook.com/caosugiongtuananh"
+              aria-label="Facebook"
+              class="hover:text-white transition-colors duration-300"
+            >
+              <img
+                src="https://res.cloudinary.com/dbonwxmgl/image/upload/v1746092376/qgx8ou1dbf4ogr7g6bmw.png"
+                alt="Facebook Logo"
+                class="h-9 w-9"
+              />
             </a>
-            <a href="https://www.youtube.com/@tailee21417" aria-label="Youtube" class="hover:text-white transition-colors duration-300">
-              <img src="https://res.cloudinary.com/dbonwxmgl/image/upload/v1746092376/skrccs2d36g5hmixyfrw.png" alt="Youtube Logo" class="h-9 w-9" />
+            <a
+              href="https://www.youtube.com/@tailee21417"
+              aria-label="Youtube"
+              class="hover:text-white transition-colors duration-300"
+            >
+              <img
+                src="https://res.cloudinary.com/dbonwxmgl/image/upload/v1746092376/skrccs2d36g5hmixyfrw.png"
+                alt="Youtube Logo"
+                class="h-9 w-9"
+              />
             </a>
-            <a href="https://zalo.me/0979072768" aria-label="Zalo" class="hover:text-white transition-colors duration-300">
-              <img src="https://res.cloudinary.com/dbonwxmgl/image/upload/v1746092376/oiuvdbnx2i8xidl7c6ry.png" alt="Zalo Logo" class="h-9 w-9 bg-white rounded" />
+            <a
+              href="https://zalo.me/0979072768"
+              aria-label="Zalo"
+              class="hover:text-white transition-colors duration-300"
+            >
+              <img
+                src="https://res.cloudinary.com/dbonwxmgl/image/upload/v1746092376/oiuvdbnx2i8xidl7c6ry.png"
+                alt="Zalo Logo"
+                class="h-9 w-9 bg-white rounded"
+              />
+            </a>
+            <a
+              href="https://www.google.com/maps/place/Nh%C3%A0+v%C4%83n+h%C3%B3a+khu+ph%E1%BB%91+4/@11.428879,106.3867057,11z/data=!4m9!1m2!2m1!1zS2h1IHBo4buRIDA3LCBIdXnhu4duIENoxqFuIFRow6BuaCwgVOG7iW5oIELDrG5oIFBoxrDhu5tj!3m5!1s0x3174ad003c2c9b23:0x4857ff7ec4e5e056!8m2!3d11.4289184!4d106.5587397!16s%2Fg%2F11xcnjcdlp?entry=ttu&g_ep=EgoyMDI1MDQzMC4xIKXMDSoASAFQAw%3D%3D"
+              aria-label="Google Maps"
+              class="hover:text-white transition-colors duration-300"
+            >
+              <img
+                src="https://res.cloudinary.com/dbonwxmgl/image/upload/v1746093764/q8g8qpomxzkrz6wbr7h1.png"
+                alt="Google Maps Logo"
+                class="h-9 w-9"
+              />
             </a>
           </div>
         </div>
+
+        <!-- Quick Links -->
         <div class="text-center md:text-left">
           <h3 class="text-lg font-semibold mb-4 text-white">Liên kết nhanh</h3>
           <ul class="space-y-2">
-            <li><NuxtLink to="/" class="hover:underline hover:text-white transition-colors duration-300">Trang chủ</NuxtLink></li>
-            <li><NuxtLink to="/plants" class="hover:underline hover:text-white transition-colors duration-300">Danh mục Cây</NuxtLink></li>
-            <li><NuxtLink to="/posts" class="hover:underline hover:text-white transition-colors duration-300">Bài viết & Mẹo</NuxtLink></li>
-            <li><NuxtLink to="/gallery" class="hover:underline hover:text-white transition-colors duration-300">Về chúng tôi</NuxtLink></li>
-            <li><NuxtLink to="/contact" class="hover:underline hover:text-white transition-colors duration-300">Liên hệ</NuxtLink></li>
+            <li>
+              <NuxtLink
+                to="/"
+                class="hover:underline hover:text-white transition-colors duration-300"
+              >
+                Trang chủ
+              </NuxtLink>
+            </li>
+            <li>
+              <NuxtLink
+                to="/plants"
+                class="hover:underline hover:text-white transition-colors duration-300"
+              >
+                Danh mục Cây
+              </NuxtLink>
+            </li>
+            <li>
+              <NuxtLink
+                to="/posts"
+                class="hover:underline hover:text-white transition-colors duration-300"
+              >
+                Bài viết & Mẹo
+              </NuxtLink>
+            </li>
+            <li>
+              <NuxtLink
+                to="/gallery"
+                class="hover:underline hover:text-white transition-colors duration-300"
+              >
+                Về chúng tôi
+              </NuxtLink>
+            </li>
+            <li>
+              <NuxtLink
+                to="/contact"
+                class="hover:underline hover:text-white transition-colors duration-300"
+              >
+                Liên hệ
+              </NuxtLink>
+            </li>
           </ul>
         </div>
+
+        <!-- Contact Information -->
         <div class="text-center md:text-left">
           <h3 class="text-lg font-semibold mb-4 text-white">Thông tin liên hệ</h3>
           <ul class="space-y-2">
-            <li class="opacity-90"><strong>Email:</strong> tu.lethanh.2810@gmail.com</li>
-            <li class="opacity-90"><strong>Điện thoại:</strong> 0979 072 768</li>
-            <li class="opacity-90"><strong>Địa chỉ:</strong> Khu phố 07, Huyện Chơn Thành, Tỉnh Bình Phước</li>
+            <li class="opacity-90">
+              <strong>Email:</strong> tu.lethanh.2810@gmail.com
+            </li>
+            <li class="opacity-90">
+              <strong>Điện thoại:</strong> 0979 072 768
+            </li>
+            <li class="opacity-90">
+              <strong>Địa chỉ:</strong> Khu phố 07, Huyện Chơn Thành, Tỉnh Bình Phước
+            </li>
           </ul>
         </div>
+
+        <!-- Consultation Form -->
         <div class="text-center md:text-left">
           <h3 class="text-lg font-semibold mb-4 text-white">Nhận đăng ký tư vấn</h3>
           <p class="text-sm opacity-90 mb-4">Đăng ký tư vấn thông qua Zalo!</p>
@@ -62,6 +145,8 @@
           </form>
         </div>
       </div>
+
+      <!-- Footer Bottom -->
       <div class="mt-12 pt-6 border-t border-green-700 text-center text-sm opacity-70">
         <p>© {{ new Date().getFullYear() }} Cây giống Tuấn Anh. Tất cả quyền được bảo lưu.</p>
       </div>
@@ -92,7 +177,9 @@ const handlePhoneSubmit = () => {
     return;
   }
 
-  const messageText = encodeURIComponent(`Tôi muốn được tư vấn về cây giống. Số điện thoại của tôi là: ${phoneNumber}`);
+  const messageText = encodeURIComponent(
+    `Tôi muốn được tư vấn về cây giống. Số điện thoại của tôi là: ${phoneNumber}`
+  );
   const zaloLink = `https://zalo.me/${recipientZaloNumber}?text=${messageText}`;
 
   Swal.fire({
@@ -104,9 +191,9 @@ const handlePhoneSubmit = () => {
     cancelButtonText: 'Hủy bỏ',
     customClass: {
       confirmButton: 'bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded',
-      cancelButton: 'bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded ml-3'
+      cancelButton: 'bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded ml-3',
     },
-    buttonsStyling: false
+    buttonsStyling: false,
   }).then((result) => {
     if (result.isConfirmed) {
       window.open(zaloLink, '_blank');

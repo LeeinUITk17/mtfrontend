@@ -24,6 +24,11 @@
                 </div>
             </div>
         </section>
+        <section id="plant-varieties-section" class="py-12 md:py-16 bg-green-50/30"> 
+            <div class="container mx-auto px-4">
+                <PlantVarietiesTable />
+            </div>
+        </section>
 
         <section id="recent-posts-section" class="bg-gray-50 py-12 md:py-16">
             <div class="container mx-auto px-4">
@@ -83,6 +88,7 @@ import scrollableMenu from '~/components/common/scrollableMenu.vue';
 import Gallery from '~/components/common/Gallery.vue';
 import banner from '~/components/common/banner.vue';
 import testimonial from '~/components/common/testimonial.vue';
+import PlantVarietiesTable from '~/components/common/PlantVarietiesTable.vue';
 
 const config = useRuntimeConfig();
 
