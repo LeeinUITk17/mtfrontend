@@ -1,75 +1,103 @@
-import { defineNuxtPlugin, useRuntimeConfig, navigateTo } from '#app';
+import { defineNuxtPlugin, useRuntimeConfig, navigateTo, useRequestHeaders } from '#app';
 import { $fetch, FetchError, type FetchOptions, type FetchContext, type FetchResponse } from 'ofetch';
-import { ref } from 'vue';
-
-const isRefreshing = ref(false);
-const failedQueue: Array<{ resolve: Function; reject: Function; options: any }> = [];
-
-function processQueue(error: any) {
-    failedQueue.forEach((prom) => {
-        if (error) {
-            prom.reject(error);
-        } else {
-            prom.resolve();
-        }
-    });
-    failedQueue.length = 0;
-}
+import { useAuth } from '~/composables/useAuth';
 
 export default defineNuxtPlugin((nuxtApp) => {
     const config = useRuntimeConfig();
+
+    const pluginState = {
+        isRefreshing: false,
+        failedQueue: [] as Array<{ resolve: Function; reject: Function; options: FetchOptions & { url: string } }>,
+    };
+
+    function processQueue(error: any | null) {
+        pluginState.failedQueue.forEach((prom) => {
+            if (error) prom.reject(error);
+            else prom.resolve();
+        });
+        pluginState.failedQueue.length = 0;
+    }
 
     const apiFetch = $fetch.create({
         baseURL: config.public.apiBase,
         credentials: 'include',
 
+        async onRequest({ request, options }) {
+            if (process.server) {
+                const requestHeaders = useRequestHeaders(['cookie']);
+                if (requestHeaders.cookie) {
+                    options.headers = {
+                        ...options.headers,
+                        Cookie: requestHeaders.cookie,
+                    };
+                    options.credentials = 'omit';
+                } else {
+                    options.credentials = 'omit';
+                }
+            }
+        },
+
         async onResponseError({ request, response, options }: FetchContext & { response: FetchResponse<any> }): Promise<void> {
-            const requestUrlString = typeof request === 'string' ? request : request.url;
-            const requestUrl = new URL(requestUrlString);
-            const requestPath = requestUrl.pathname;
-
-            const originalRequestOptions = options;
+            const originalRequestUrl = typeof request === 'string' ? request : new URL(request.url, options.baseURL).toString();
             const status = response.status;
-            const isAuthEndpoint = requestPath.startsWith('/auth/');
+            const opts = options as FetchOptions & { _retry?: boolean };
 
-            const opts = originalRequestOptions as FetchOptions & { _retry?: boolean };
+            if (status === 401 && originalRequestUrl.includes('/auth/') && !originalRequestUrl.includes('/auth/profile')) {
+                const fetchError = new FetchError(`[${status}] ${response.statusText} on auth endpoint`);
+                fetchError.response = response;
+                throw fetchError;
+            }
 
-            if (status === 401 && !opts._retry && !isAuthEndpoint) {
-                if (isRefreshing.value) {
-                    await new Promise((resolve, reject) => {
-                        failedQueue.push({ resolve, reject, options: { ...opts, url: requestUrlString } as any });
-                    });
-                    return;
+            if (status === 401 && !opts._retry) {
+                if (pluginState.isRefreshing) {
+                    try {
+                        await new Promise((resolve, reject) => {
+                            pluginState.failedQueue.push({ resolve, reject, options: { ...opts, url: originalRequestUrl } as any });
+                        });
+                        return apiFetch(originalRequestUrl, opts);
+                    } catch (queuedError) {
+                        throw queuedError;
+                    }
                 }
 
                 opts._retry = true;
-                isRefreshing.value = true;
+                pluginState.isRefreshing = true;
 
                 try {
-                    await $fetch('/auth/refresh', {
-                        baseURL: config.public.apiBase,
-                        credentials: 'include',
-                        method: 'POST',
-                    });
-
+                    await apiFetch('/auth/refresh', { method: 'POST' });
                     processQueue(null);
+                    return apiFetch(originalRequestUrl, opts);
                 } catch (refreshError: any) {
                     processQueue(refreshError);
-
                     if (process.client) {
-                        await navigateTo('/login', { replace: true });
+                        try {
+                            const { logout } = useAuth();
+                            await logout();
+                            await navigateTo('/login', { replace: true });
+                        } catch {
+                            window.location.href = '/login';
+                        }
                     }
-
                     throw refreshError;
                 } finally {
-                    isRefreshing.value = false;
+                    pluginState.isRefreshing = false;
                 }
-                return;
-            } else if (status === 401 && isAuthEndpoint) {
-                console.warn('401 on auth endpoint, letting error propagate:', requestPath);
+            } else if (status === 401 && opts._retry) {
+                if (process.client) {
+                    try {
+                        const { logout } = useAuth();
+                        await logout();
+                        await navigateTo('/login', { replace: true });
+                    } catch {
+                        window.location.href = '/login';
+                    }
+                }
+                const fetchError = new FetchError(`[${status}] Unauthorized (after retry) - ${originalRequestUrl}`);
+                fetchError.response = response;
+                throw fetchError;
             }
 
-            const fetchError = new FetchError(`[${response.status}] ${response.statusText} - ${requestPath}`);
+            const fetchError = new FetchError(`[${response.status}] ${response.statusText} - ${originalRequestUrl}`);
             fetchError.response = response;
             throw fetchError;
         },

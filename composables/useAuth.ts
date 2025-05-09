@@ -1,97 +1,84 @@
 import { ref, computed } from 'vue';
-import { navigateTo, useNuxtApp, useState } from '#app';
+import { useNuxtApp, useState } from '#app';
 import type { $Fetch } from 'ofetch';
 
 interface AuthUser {
     id: string;
-    name: string;
+    username: string;
     email: string;
-    role: string;
 }
+
+let _api: $Fetch | null = null;
 
 export const useAuth = () => {
     const user = useState<AuthUser | null>('authStateUser', () => null);
     const nuxtApp = useNuxtApp();
-    const $api = nuxtApp.$api as $Fetch;
+
+    if (!_api && nuxtApp.$api) {
+        _api = nuxtApp.$api as $Fetch;
+    }
 
     const isAuthenticated = computed(() => !!user.value);
 
     const fetchUser = async () => {
-        if (!$api) {
-            console.error('[useAuth] $api instance is not available.');
-            user.value = null;
-            return;
-        }
+        if (!_api) return;
+
         try {
-            console.log('[useAuth] Fetching user...');
-            const fetchedUser = await $api<AuthUser | null>('/auth/profile', {
-                method: 'GET',
-                ignoreResponseError: true,
-            });
-    
+            const fetchedUser = await _api<AuthUser>('/auth/profile', { method: 'GET' });
             if (fetchedUser && typeof fetchedUser === 'object' && fetchedUser.id) {
-                console.log('[useAuth] User fetched successfully:', fetchedUser);
-                user.value = fetchedUser as AuthUser;
+                user.value = fetchedUser;
             } else {
-                console.warn('[useAuth] No user found.');
                 user.value = null;
             }
         } catch (error: any) {
-            console.error('[useAuth] fetchUser error:', error);
+            console.error('[useAuth] fetchUser API error:', error.message || error);
             user.value = null;
         }
     };
 
     const login = async (credentials: { identifier: string; password: string }) => {
-        if (!$api) {
-            console.error('[useAuth] $api not available for login.');
-            return { success: false, error: 'API client not ready.' };
-        }
-
+        if (!_api) return { success: false, error: 'API client not ready.' };
+        user.value = null;
         const loginData = { email: credentials.identifier, password: credentials.password };
         try {
-            await $api<{ message: string }>('/auth/login', {
-                method: 'POST',
-                body: loginData,
-            });
+            await _api<{ message?: string }>('/auth/login', { method: 'POST', body: loginData });
             await fetchUser();
-            return { success: true };
+            if (user.value) {
+                return { success: true };
+            } else {
+                return { success: false, error: 'Login successful but failed to retrieve user session.' };
+            }
         } catch (error: any) {
-            console.error('[useAuth] Login error:', error);
+            console.error('[useAuth] Login API error:', error);
             user.value = null;
-            return { success: false, error: error?.data?.message || error?.message || 'Login failed.' };
+            const message = error.data?.message || error.message || 'Login failed. Please check your credentials.';
+            return { success: false, error: message };
         }
     };
 
-    const signup = async (signupData: { username: string; email: string; password: string; }) => {
-        if (!$api) {
-            console.error('[useAuth] $api not available for signup.');
-            return { success: false, error: 'API client not ready.' };
-        }
+    const signup = async (signupData: { username: string; email: string; password: string }) => {
+        if (!_api) return { success: false, error: 'API client not ready.' };
+        user.value = null;
         try {
-            await $api<{ message: string }>('/auth/signup', {
-                method: 'POST',
-                body: signupData,
-            });
-            await fetchUser();
+            await _api<{ message: string }>('/auth/signup', { method: 'POST', body: signupData });
             return { success: true };
         } catch (error: any) {
-            console.error('[useAuth] Signup error:', error);
-            return { success: false, error: error?.data?.message || error?.message || 'Signup failed.' };
+            console.error('[useAuth] Signup API error:', error);
+            const message = error.data?.message || error.message || 'Signup failed. Please try again.';
+            return { success: false, error: message };
         }
     };
 
     const logout = async () => {
-        if (!$api) {
-            console.error('[useAuth] $api not available for logout.');
+        if (!_api) {
+            console.warn('[useAuth] $api not available for logout, clearing state locally.');
+            user.value = null;
             return;
         }
         try {
-            await $api<{ message: string }>('/auth/logout', {
-                method: 'POST',
-            });
-        } catch (error) {
-            console.error('[useAuth] Logout error:', error);
+            await _api<{ message?: string }>('/auth/logout', { method: 'POST' });
+        } catch (error: any) {
+            console.error('[useAuth] Logout API error (ignoring):', error);
         } finally {
             user.value = null;
         }
