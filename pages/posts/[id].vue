@@ -199,7 +199,7 @@ useHead(() => {
     'vườn ươm cao su Bình Phước'
   ];
 
-  const contentKeywords = post.value?.content ? extractKeywords(extractText(post.value.content)) : [];
+  const contentKeywords = post.value?.content || [];
 
   return {
     title: `${postTitle} | Kinh Nghiệm Trồng Cao Su - Tuấn Anh`,
@@ -301,19 +301,6 @@ useHead(() => {
   };
 });
 
-const extractKeywords = (text) => {
-  if (!text) return [];
-  const keywords = [
-    'RRIV 209', 'PB 235', 'DK4', 'VM 515', 'giống cao su',
-    'trồng cao su', 'chăm sóc cao su', 'bón phân', 'phòng bệnh',
-    'năng suất mủ', 'kỹ thuật ghép', 'cạo mủ', 'bệnh vàng lá',
-    'bệnh nấm hồng', 'chăm sóc vườn ươm', 'cây giống chất lượng'
-  ];
-  
-  return keywords.filter(keyword => 
-    text.toLowerCase().includes(keyword.toLowerCase())
-  );
-};
 
 </script>
 
