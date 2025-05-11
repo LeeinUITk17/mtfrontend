@@ -26,12 +26,12 @@
                     </svg>
                 </button>
 
-                <ul class="hidden md:flex items-center space-x-6 text-lg font-semibold">
-                    <li class="border-2 p-1 border-green-300 rounded-xl"><HeaderItem title="Trang chủ" link="/" :active-link="route.path" /></li>
-                    <li class="border-2 p-1 border-green-300 rounded-xl"><HeaderItem title="Cây giống" link="/plants" :active-link="route.path" /></li>
-                    <li class="border-2 p-1 border-green-300 rounded-xl"><HeaderItem title="Bài viết" link="/posts" :active-link="route.path" /></li>
-                    <li class="border-2 p-1 border-green-300 rounded-xl"><HeaderItem title="Hình ảnh " link="/gallery" :active-link="route.path" /></li>
-                    <li class="border-2 p-1 border-green-300 rounded-xl"><HeaderItem title="Liên hệ" link="/contact" :active-link="route.path" /></li>
+                <ul class="hidden md:flex items-center gap-x-6 font-medium ">
+                    <li class="border-2 border-green-300 rounded-xl"><HeaderItem title="Trang chủ" link="/" :active-link="route.path" /></li>
+                    <li class="border-2 border-green-300 rounded-xl"><HeaderItem title="Cây giống" link="/plants" :active-link="route.path" /></li>
+                    <li class="border-2 border-green-300 rounded-xl"><HeaderItem title="Bài viết" link="/posts" :active-link="route.path" /></li>
+                    <li class="border-2 border-green-300 rounded-xl"><HeaderItem title="Hình ảnh " link="/gallery" :active-link="route.path" /></li>
+                    <li class="border-2 border-green-300 rounded-xl"><HeaderItem title="Liên hệ" link="/contact" :active-link="route.path" /></li>
                     <!-- <li v-if="isAuthenticated">
                         <NuxtLink
                             to="/admin"

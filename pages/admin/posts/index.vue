@@ -232,7 +232,6 @@ const prevPage = () => {
     if (currentPage.value > 1) currentPage.value--;
 };
 
-useHead({ title: 'Quản lý Bài viết - Admin' });
 </script>
 
 <style scoped>

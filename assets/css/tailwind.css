@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 /* Bạn có thể thêm các style tùy chỉnh ở đây */
-/* Ví dụ: */
-/* body {
+
+body {
   @apply font-sans;
-} */
+}

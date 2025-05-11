@@ -77,7 +77,7 @@
 
 <script setup>
 import { ref, watch, onUnmounted } from 'vue';
-
+const config = useRuntimeConfig();
 const showModal = ref(false);
 const currentImage = ref(0);
 const modalImageLoading = ref(false);
@@ -146,10 +146,43 @@ onUnmounted(() => {
   document.removeEventListener('keydown', handleKeydown);
 });
 
+
 useHead({
-  title: 'Plant Gallery - Plant Shop',
-  meta: [
-    { name: 'description', content: 'Explore our beautiful and diverse plant gallery.' },
+  script: [
+    {
+      key: 'gallery-schema',
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "ImageGallery",
+        "name": "Thư viện ảnh vườn ươm cao su giống",
+        "description": "Hình ảnh thực tế các giống cao su tại vườn ươm Tuấn Anh",
+        "url": `${config.public.baseUrl}/gallery`,
+        "publisher": {
+          "@type": "Organization",
+          "name": "Vườn Ươm Cây Cao Su Giống Tuấn Anh",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://res.cloudinary.com/dbonwxmgl/image/upload/v1746146995/gpg18t1hvlrlvww9sw9j.png"
+          }
+        }
+      })
+    },
+    ...images.value.map((imgSrc, index) => ({
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "ImageObject",
+        "contentUrl": imgSrc,
+        "description": `Hình ảnh thực tế giống cao su tại vườn ươm Tuấn Anh - Ảnh ${index + 1}`,
+        "license": "https://creativecommons.org/licenses/by/4.0/",
+        "acquireLicensePage": `${config.public.baseUrl}/gallery`,
+        "creator": {
+          "@type": "Organization",
+          "name": "Vườn Ươm Tuấn Anh"
+        }
+      })
+    }))
   ]
 });
 </script>

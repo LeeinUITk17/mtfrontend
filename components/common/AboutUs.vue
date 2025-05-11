@@ -6,7 +6,7 @@
                     ĐÔI NÉT VỀ CHÚNG TÔI
                 </h2>
                 <p class="mt-2 text-sm md:text-base text-gray-500">
-                    ►► Tuấn Anh - Nhà Cung Cấp Cây Cao Su Giống Chất Lượng Cao ◄◄
+                    ►► Tuấn Anh - Nhà Cung Cấp Cây Cao Su Giống Chất Lượng Cao Tại Bình Phước ◄◄
                 </p>
             </div>
 
@@ -17,7 +17,7 @@
 
                 <div class="space-y-6 text-gray-700 leading-relaxed order-2 lg:order-1">
                     <p class="text-base md:text-lg">
-                        Chào mừng bạn đến với <strong class="text-green-600 font-semibold">Cơ Sở Cây Giống Tuấn Anh</strong> – đơn vị hàng đầu tại Bình Phước chuyên cung cấp cao su giống chất lượng cao. Với nhiều năm kinh nghiệm trong lĩnh vực giống cao su, chúng tôi cam kết mang đến cho bà con nông dân những cây giống khỏe mạnh, sinh trưởng tốt, dễ trồng và thích nghi với nhiều vùng khí hậu khác nhau.
+                        Chào mừng bạn đến với <strong class="text-green-600 font-semibold">Cơ Sở Cây Giống Tuấn Anh</strong> – đơn vị hàng đầu tại Bình Phước chuyên <strong>bán cây cao su giống</strong> chất lượng cao với giá cạnh tranh. Với nhiều năm kinh nghiệm trong lĩnh vực cây giống cao su, chúng tôi cam kết mang đến cho bà con nông dân những <strong>cây cao su giống loại 1</strong> khỏe mạnh, sinh trưởng tốt, dễ trồng và thích nghi với nhiều vùng khí hậu khác nhau.
                     </p>
 
                     <div class="space-y-3">
@@ -30,7 +30,7 @@
                             <div>
                                 <h3 class="text-lg md:text-xl font-semibold text-green-600 mb-1">Sản phẩm nổi bật</h3>
                                 <p class="text-sm md:text-base">
-                                    Cao su giống BP235, RRIV209, RRIV106 – Tỷ lệ sống trên 99%, đã được kiểm chứng thực tế.
+                                    Cung cấp đa dạng các <strong>giống cây cao su</strong> chất lượng cao: <strong>BP235, RRIV209, RRIV106, DK4, VM515</strong> – Tỷ lệ sống trên 99%, đã được kiểm chứng thực tế. Đặc biệt <strong>cây cao su giống RRIV 209</strong> và <strong>PB 235</strong> cho năng suất mủ vượt trội, kháng bệnh tốt.
                                 </p>
                             </div>
                         </div>
@@ -45,8 +45,8 @@
                             <div>
                                 <h3 class="text-lg md:text-xl font-semibold text-green-600 mb-1">Giao hàng & Tư vấn</h3>
                                 <ul class="list-none space-y-1 pl-0 text-sm md:text-base">
-                                    <li>Giao hàng toàn quốc – Miễn phí vận chuyển, hỗ trợ tận nơi từ Gia Lai, Tây Nguyên đến miền Tây, miền Bắc.</li>
-                                    <li>Tư vấn miễn phí, chọn giống phù hợp và hướng dẫn kỹ thuật trồng, chăm sóc chi tiết.</li>
+                                    <li><strong>Bán cây cao su giống số lượng lớn</strong> - Giao hàng toàn quốc – Miễn phí vận chuyển, hỗ trợ tận nơi từ Gia Lai, Tây Nguyên đến miền Tây, miền Bắc.</li>
+                                    <li>Tư vấn miễn phí <strong>kỹ thuật trồng cây cao su giống</strong>, chọn giống phù hợp và hướng dẫn chi tiết <strong>cách chăm sóc cây cao su giống</strong> mới trồng, <strong>phòng bệnh cho cây cao su</strong>.</li>
                                 </ul>
                             </div>
                         </div>
@@ -59,14 +59,14 @@
                             </span>
                             <div>
                                 <h3 class="text-lg md:text-xl font-semibold text-green-600 mb-1">Thông tin liên hệ</h3>
-                                <p class="text-sm md:text-base"><strong>Địa chỉ:</strong> Khu phố 07, Huyện Chơn Thành, Tỉnh Bình Phước</p>
-                                <p class="text-sm md:text-base"><strong>Hotline/Zalo:</strong> <a href="tel:0979072768" class="text-blue-600 hover:underline font-medium">0979 072 768</a></p>
+                                <p class="text-sm md:text-base"><strong>Địa chỉ vườn ươm:</strong> Khu phố 07, Huyện Chơn Thành, Tỉnh Bình Phước - <strong>Địa chỉ mua cây cao su giống tại Bình Phước</strong> uy tín</p>
+                                <p class="text-sm md:text-base"><strong>Hotline/Zalo:</strong> <a href="tel:0979072768" class="text-blue-600 hover:underline font-medium">0979 072 768</a> - Tư vấn <strong>giá cây cao su giống 2025</strong></p>
                             </div>
                         </div>
                     </div>
 
-                    <p class="text-green-700 font-semibold text-md md:text-lg italic pt-4">
-                        Rất mong được đồng hành cùng Quý khách!
+                    <p class="text-green-700 font-semibold text-md md:text-lg  pt-4">
+                        Chuyên cung cấp <strong>cây cao su giống F1</strong>, <strong>cây cao su giống ghép mắt</strong> chất lượng cao. Rất mong được đồng hành cùng Quý khách!
                     </p>
                 </div>
             </div>
@@ -78,9 +78,21 @@
 import StackedImageGallery from '~/components/common/StackedImageGallery.vue';
 
 const galleryImages = ref([
-    { id: 'main', src: 'https://res.cloudinary.com/dbonwxmgl/image/upload/v1746940629/aoc0ok9kf5utn2dlsftx.jpg', alt: 'Cây giống' },
-    { id: 'top', src: 'https://res.cloudinary.com/dbonwxmgl/image/upload/v1746940625/uvywmv98uqb2qm7zuaz5.jpg', alt: 'Khung cảnh vườn ươm từ trên cao' },
-    { id: 'side', src: 'https://res.cloudinary.com/dbonwxmgl/image/upload/v1746940625/u9gkjlpbpqggj7esly19.jpg', alt: 'Luống cây giống cao su' },
+    { 
+      id: 'main', 
+      src: 'https://res.cloudinary.com/dbonwxmgl/image/upload/v1746940629/aoc0ok9kf5utn2dlsftx.jpg', 
+      alt: 'Cây cao su giống chất lượng cao tại vườn ươm Tuấn Anh Bình Phước - Địa chỉ bán cây cao su giống uy tín' 
+    },
+    { 
+      id: 'top', 
+      src: 'https://res.cloudinary.com/dbonwxmgl/image/upload/v1746940625/uvywmv98uqb2qm7zuaz5.jpg', 
+      alt: 'Toàn cảnh vườn ươm cao su giống Tuấn Anh tại Chơn Thành, Bình Phước - Nơi cung cấp cây giống cao su số lượng lớn' 
+    },
+    { 
+      id: 'side', 
+      src: 'https://res.cloudinary.com/dbonwxmgl/image/upload/v1746940625/u9gkjlpbpqggj7esly19.jpg', 
+      alt: 'Luống cây cao su giống đạt chuẩn xuất vườn - Giống cây cao su chất lượng cao' 
+    },
 ]);
 </script>
 
