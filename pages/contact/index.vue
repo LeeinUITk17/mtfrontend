@@ -92,21 +92,21 @@
             </div>
         </section>
 
-        <!-- <section class="mt-12 md:mt-16">
-        <h2 class="text-2xl md:text-3xl font-semibold text-center text-gray-600 mb-6">Tìm chúng tôi trên bản đồ</h2>
-        <div class="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden shadow-md border border-gray-200">
-            <iframe
-                src="https://www.google.com/maps/place/Nh%C3%A0+Ga+B%E1%BA%BFn+Xe+Su%E1%BB%91i+Ti%C3%AAn/@10.8795175,106.8115269,17z/data=!3m1!4b1!4m6!3m5!1s0x3174d8ad97e3301f:0x86f901230f1bcc0f!8m2!3d10.8795175!4d106.8141018!16s%2Fg%2F11wx9ykt1w?entry=ttu&g_ep=EgoyMDI1MDQzMC4xIKXMDSoASAFQAw%3D%3D" 
-                width="100%"
-                height="450"
-                style="border:0;"
-                allowfullscreen=""
-                loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"
-                title="Bản đồ vị trí cửa hàng">
-            </iframe>
-        </div>
-    </section> -->
+        <section class="mt-12 md:mt-16">
+            <h2 class="text-2xl md:text-3xl font-semibold text-center text-gray-600 mb-6">Tìm chúng tôi trên bản đồ</h2>
+            <div class="rounded-lg overflow-hidden shadow-md border border-gray-200">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1339.885755892408!2d106.55763616681962!3d11.428316422674925!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3174ad003c2c9b23%3A0x4857ff7ec4e5e056!2zTmjDoCB2xINuIGjDs2Ega2h1IHBo4buRIDQ!5e1!3m2!1sen!2s!4v1746973174299!5m2!1sen!2s"
+                    width="100%"
+                    height="450"
+                    style="border:0;"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    title="Bản đồ vị trí cửa hàng">
+                </iframe>
+            </div>
+        </section>
     </div>
 </template>
 
@@ -200,7 +200,7 @@ useHead({
                 "priceRange": "$$",
                 "sameAs": [
                     "https://www.facebook.com/caosugiongtuananh",
-                    "https://www.youtube.com/@tailee21417"
+                    "https://www.youtube.com/@caosugiongtuananh"
                 ]
             })
         }

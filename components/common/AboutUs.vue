@@ -65,7 +65,7 @@
                         </div>
                     </div>
 
-                    <p class="text-green-700 font-semibold text-md md:text-lg italic pt-4">
+                    <p class="text-green-700 font-semibold text-md md:text-lg  pt-4">
                         Chuyên cung cấp <strong>cây cao su giống F1</strong>, <strong>cây cao su giống ghép mắt</strong> chất lượng cao. Rất mong được đồng hành cùng Quý khách!
                     </p>
                 </div>
