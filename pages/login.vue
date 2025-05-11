@@ -137,15 +137,6 @@ const handleLogin = async () => {
     }
 };
 
-useHead({
-    title: 'Log in - Plant Shop',
-    meta: [
-        { name: 'description', content: 'Log in to your account at Plant Shop to access exclusive features.' },
-        { property: 'og:title', content: 'Log in - Plant Shop' },
-        { property: 'og:description', content: 'Log in to your account at Plant Shop to access exclusive features.' },
-        { property: 'og:url', content: 'http://localhost:8080/login' },
-    ],
-});
 </script>
 
 <style scoped>

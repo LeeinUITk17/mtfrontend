@@ -1,6 +1,14 @@
 <template>
     <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100">
+        <div class="bg-green-50 p-4 md:p-6 border-b border-green-100">
+            <h2 class="text-xl font-semibold text-green-800 mb-2">Giới Thiệu Các Giống Cao Su</h2>
+            <p class="text-gray-700">
+                Vườn ươm Tuấn Anh chuyên cung cấp đa dạng các giống cao su chất lượng cao phù hợp với điều kiện khí hậu và đất đai Việt Nam. 
+                Dưới đây là bảng so sánh chi tiết đặc điểm các giống cao su phổ biến nhất hiện nay.
+            </p>
+        </div>
         <div class="overflow-x-auto">
+            
             <table class="min-w-full">
                 <thead class="bg-green-700 text-green-50">
                     <tr>
@@ -44,6 +52,7 @@
 
 <script setup>
 import { ref } from 'vue';
+const config = useRuntimeConfig();
 
 const plantVarieties = ref([
     { name: 'Cao su RRIV 209', type: 'Năng Suất Cao', description: 'Giống phổ biến, cho mủ nhiều và ổn định.' },
@@ -62,6 +71,40 @@ const plantVarieties = ref([
     { name: 'Điều Cao Sản AB05-08', type: 'Cây Điều Giống', description: 'Giống điều năng suất cao, hạt to, chất lượng tốt.' },
     { name: 'Tiêu Vĩnh Linh', type: 'Cây Tiêu Giống', description: 'Giống tiêu truyền thống, kháng bệnh, vị cay nồng đặc trưng.' },
 ]);
+
+useHead({
+  script: [
+    {
+        key: 'plant-varieties-schema',
+        type: 'application/ld+json',
+        innerHTML: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Table",
+            "about": "So sánh các giống cây cao su",
+            "name": "Bảng đặc điểm giống cao su",
+            "description": "Thông tin chi tiết về các giống cao su chất lượng cao tại vườn ươm Tuấn Anh",
+            "publisher": {
+            "@type": "Organization",
+            "name": "Vườn Ươm Cây Cao Su Giống Tuấn Anh",
+            "url": "https://caosugiongtuananh.com"
+            },
+            "mainEntity": plantVarieties.value.map(variety => ({
+            "@type": "ListItem",
+            "item": {
+                "@type": "Product",
+                "name": variety.name,
+                "description": `${variety.type}. ${variety.description}`,
+                "category": "Cây giống cao su",
+                "brand": {
+                "@type": "Brand",
+                "name": "Vườn Ươm Tuấn Anh"
+                }
+            }
+            }))
+        })
+    }
+  ]
+});
 </script>
 
 <style scoped>

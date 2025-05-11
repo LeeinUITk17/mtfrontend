@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.sitemaps.org/schemas/sitemap-image/1.1">
+    <url>
+        <loc>https://caosugiongtuananh.com/gallery</loc>
+        <image:image>
+            <image:loc>https://res.cloudinary.com/dbonwxmgl/image/upload/q_auto,f_webp,w_auto/v1746077762/vmtavyqywh98r2tikoiv.jpg</image:loc>
+            <image:title>Vườn ươm cao su giống Tuấn Anh</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://res.cloudinary.com/dbonwxmgl/image/upload/q_auto,f_webp,w_auto/v1746940625/u9gkjlpbpqggj7esly19.jpg</image:loc>
+            <image:title>Giống cao su RRIV 209</image:title>
+        </image:image>
+    </url>
+</urlset>

@@ -53,27 +53,27 @@
   
   const slides: Slide[] = [
   {
-    title: "Chào mừng đến với Vườn Cây Giống Xanh Tươi",
-    description: "Khám phá các loại cây giống chất lượng cho khu vườn và nông trại của bạn.",
-    buttonText: "Xem Cây Giống",
+    title: "Cây Cao Su Giống Chất Lượng - Vườn Ươm Tuấn Anh",
+    description: "Chuyên cung cấp các giống cao su RRIV 209, PB 235, DK4 chất lượng cao tại Bình Phước. Giá cây cao su giống 2025 cạnh tranh nhất thị trường.",
+    buttonText: "Xem Giống Cao Su",
     link: "/plants",
     image: "https://res.cloudinary.com/dbonwxmgl/image/upload/v1746077762/gryyvyt2icj8pasisd80.jpg",
   },
   {
-    title: "Chia Sẻ Kinh Nghiệm Trồng Cây",
-    description: "Học cách chăm sóc và phát triển cây giống hiệu quả từ những người làm vườn chuyên nghiệp.",
-    buttonText: "Đọc Bài Viết",
-    link: "/posts",
+    title: "Kỹ Thuật Trồng & Chăm Sóc Cao Su",
+    description: "Hướng dẫn chi tiết cách trồng, chăm sóc và phòng bệnh cho cây cao su giống đạt năng suất mủ cao nhất.",
+    buttonText: "Xem Kỹ Thuật",
+    link: "/posts/ky-thuat-trong-cao-su",
     image: "https://res.cloudinary.com/dbonwxmgl/image/upload/v1746077766/tic4dil5kzefok4conki.jpg",
   },
   {
-    title: "Tham Quan Vườn Cây Giống Của Chúng Tôi",
-    description: "Xem những hình ảnh thực tế từ vườn cây và khách hàng của chúng tôi.",
-    buttonText: "Xem Thư Viện Ảnh",
+    title: "Thực Tế Vườn Ươm Cao Su Giống",
+    description: "Hình ảnh thực tế quy trình sản xuất cây cao su giống đạt tiêu chuẩn tại vườn ươm Tuấn Anh, Chơn Thành, Bình Phước.",
+    buttonText: "Tham Quan Vườn Ươm",
     link: "/gallery",
     image: "https://res.cloudinary.com/dbonwxmgl/image/upload/v1746077762/f4uz4lqifowwsup2j4nt.jpg",
   },
-  ];
+];
 
   
   const activeIndex = ref(0);

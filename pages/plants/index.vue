@@ -168,15 +168,87 @@ const prevPage = () => {
     }
 };
 
+
 useHead({
-    title: 'Danh mục Cây cảnh - Plant Shop',
+    title: 'Danh Mục Cây Cao Su Giống Chất Lượng - Vườn Ươm Tuấn Anh',
     meta: [
-        { name: 'description', content: 'Khám phá bộ sưu tập đa dạng các loại cây cảnh của chúng tôi. Tìm cây hoàn hảo cho không gian của bạn.' },
-        { property: 'og:title', content: 'Danh mục Cây cảnh - Plant Shop' },
-        { property: 'og:description', content: 'Khám phá bộ sưu tập đa dạng các loại cây cảnh của chúng tôi. Tìm cây hoàn hảo cho không gian của bạn.' },
-        { property: 'og:image', content: '/social-share-image.jpg' },
-        { property: 'og:url', content: `${config.public.apiBase}/plants` },
+        { 
+            name: 'description', 
+            content: 'Danh mục đa dạng các giống cây cao su chất lượng cao: RRIV 209, PB 235, DK4, VM 515. Cung cấp cây giống đạt tiêu chuẩn, kháng bệnh tốt, năng suất mủ cao tại Bình Phước.' 
+        },
+        { 
+            name: 'keywords', 
+            content: 'cây cao su giống, bán cây cao su giống, giống cây cao su, cây cao su giống Bình Phước, vườn ươm cao su giống, cây cao su RRIV 209, cây cao su PB 235, cây cao su DK4, cây cao su VM 515, địa chỉ mua cây cao su giống' 
+        },
+        { 
+            property: 'og:title', 
+            content: 'Danh Mục Cây Cao Su Giống - Vườn Ươm Tuấn Anh Bình Phước' 
+        },
+        { 
+            property: 'og:description', 
+            content: 'Cung cấp đa dạng các giống cây cao su chất lượng cao, đạt tiêu chuẩn xuất vườn tại Bình Phước' 
+        },
+        { 
+            property: 'og:image', 
+            content: 'https://res.cloudinary.com/dbonwxmgl/image/upload/v1746146995/gpg18t1hvlrlvww9sw9j.png' 
+        },
+        { 
+            property: 'og:url', 
+            content: `${config.public.baseUrl}/plants` 
+        },
+        { 
+            property: 'og:type', 
+            content: 'website' 
+        },
+        
+        { 
+            name: 'twitter:card', 
+            content: 'summary_large_image' 
+        },
+        { 
+            name: 'twitter:title', 
+            content: 'Danh Mục Cây Cao Su Giống - Tuấn Anh' 
+        },
+        { 
+            name: 'twitter:description', 
+            content: 'Các giống cao su chất lượng cao tại vườn ươm Tuấn Anh Bình Phước' 
+        },
+        { 
+            name: 'twitter:image', 
+            content: 'https://res.cloudinary.com/dbonwxmgl/image/upload/q_auto,f_webp,w_auto/v1746146995/gpg18t1hvlrlvww9sw9j.png' 
+        },
+        
+        { 
+            rel: 'canonical', 
+            href: `${config.public.baseUrl}/plants` 
+        },
     ],
+    link: [
+        { 
+            rel: 'canonical', 
+            href: `${config.public.baseUrl}/plants` 
+        }
+    ],
+    script: [
+        {
+            type: 'application/ld+json',
+            innerHTML: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "CollectionPage",
+                "name": "Danh mục cây cao su giống",
+                "description": "Cung cấp các giống cây cao su chất lượng cao tại Bình Phước",
+                "url": `${config.public.baseUrl}/plants`,
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "Vườn Ươm Cây Cao Su Giống Tuấn Anh",
+                    "logo": {
+                        "@type": "ImageObject",
+                        "url": "https://res.cloudinary.com/dbonwxmgl/image/upload/q_auto,f_webp,w_auto/v1746146995/gpg18t1hvlrlvww9sw9j.png"
+                    }
+                }
+            })
+        }
+    ]
 });
 </script>
 

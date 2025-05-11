@@ -193,12 +193,85 @@ onUnmounted(() => {
 });
 
 useHead({
-    title: 'Bộ sưu tập Ảnh - Plant Shop',
+    title: 'Thư Viện Ảnh Cây Cao Su Giống - Vườn Ươm Tuấn Anh Bình Phước',
     meta: [
-        { name: 'description', content: 'Khám phá bộ sưu tập ảnh cây cảnh đẹp và đa dạng của chúng tôi.' },
-        { property: 'og:title', content: 'Bộ sưu tập Ảnh - Plant Shop' },
-        { property: 'og:description', content: 'Khám phá bộ sưu tập ảnh cây cảnh đẹp và đa dạng của chúng tôi.' },
+        { 
+            name: 'description', 
+            content: 'Hình ảnh thực tế các giống cây cao su RRIV 209, PB 235, DK4, VM 515 tại vườn ươm Tuấn Anh. Xem quy trình chăm sóc, chất lượng cây giống và thành quả của bà con nông dân.' 
+        },
+        { 
+            name: 'keywords', 
+            content: 'hình ảnh cây cao su giống, ảnh thực tế vườn cao su, cây cao su giống RRIV 209, cây cao su PB 235, vườn ươm cao su Bình Phước, quy trình chăm sóc cao su, hình ảnh cây cao su khỏe mạnh, album cây cao su giống, thư viện ảnh nông nghiệp' 
+        },
+        { 
+            property: 'og:title', 
+            content: 'Thư Viện Ảnh Cây Cao Su Giống - Tuấn Anh Bình Phước' 
+        },
+        { 
+            property: 'og:description', 
+            content: 'Hình ảnh thực tế các giống cây cao su chất lượng cao tại vườn ươm Tuấn Anh' 
+        },
+        { 
+            property: 'og:image', 
+            content: images.value?.[0]?.imageUrl || 'https://res.cloudinary.com/dbonwxmgl/image/upload/q_auto,f_webp,w_auto/v1746146995/gpg18t1hvlrlvww9sw9j.png' 
+        },
+        { 
+            property: 'og:url', 
+            content: `${config.public.baseUrl}/gallery` 
+        },
+        { 
+            property: 'og:type', 
+            content: 'website' 
+        },
+        
+        { 
+            name: 'twitter:card', 
+            content: 'summary_large_image' 
+        },
+        { 
+            name: 'twitter:title', 
+            content: 'Ảnh Thực Tế Cây Cao Su Giống - Tuấn Anh' 
+        },
+        { 
+            name: 'twitter:description', 
+            content: 'Hình ảnh chất lượng cây giống tại vườn ươm uy tín Bình Phước' 
+        },
+        { 
+            name: 'twitter:image', 
+            content: images.value?.[0]?.imageUrl || 'https://res.cloudinary.com/dbonwxmgl/image/upload/q_auto,f_webp,w_auto/v1746146995/gpg18t1hvlrlvww9sw9j.png' 
+        },
+        
+        { 
+            rel: 'canonical', 
+            href: `${config.public.baseUrl}/gallery` 
+        },
     ],
+    link: [
+        { 
+            rel: 'canonical', 
+            href: `${config.public.baseUrl}/gallery` 
+        }
+    ],
+    script: [
+        {
+            type: 'application/ld+json',
+            innerHTML: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "ImageGallery",
+                "name": "Thư viện ảnh cây cao su giống",
+                "description": "Hình ảnh thực tế các giống cây cao su tại vườn ươm Tuấn Anh",
+                "url": `${config.public.baseUrl}/gallery`,
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "Vườn Ươm Cây Cao Su Giống Tuấn Anh",
+                    "logo": {
+                        "@type": "ImageObject",
+                        "url": "https://res.cloudinary.com/dbonwxmgl/image/upload/q_auto,f_webp,w_auto/v1746146995/gpg18t1hvlrlvww9sw9j.png"
+                    }
+                }
+            })
+        }
+    ]
 });
 </script>
 
