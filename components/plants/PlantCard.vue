@@ -26,7 +26,7 @@
                 </h3>
             </div>
             <p v-if="plant.price != null" class="text-base font-bold text-green-600 mt-2">
-                {{ formatCurrency(plant.price) }}
+                Liên hệ: <a href="tel:0979072768" class="hover:underline">0979 072 768</a>
             </p>
         </div>
     </NuxtLink>

@@ -4,8 +4,8 @@
       <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
         <!-- Logo and Description -->
         <div class="space-y-4 text-center md:text-left">
-          <div class="text-3xl md:text-4xl font-extrabold tracking-wider text-white mb-2">
-            <span class="inline-block align-middle mr-2">🌱 Cây giống</span> Tuấn Anh
+          <div class="text-xl md:text-2xl font-bold tracking-wider text-white mb-2">
+            <span class="inline-block align-middle mr-2">🌱 Cao su giống Tuấn Anh</span>
           </div>
           <p class="text-sm md:text-base opacity-90">
             Khám phá, Chia sẻ & Nuôi dưỡng niềm đam mê cây xanh của bạn với chúng tôi.

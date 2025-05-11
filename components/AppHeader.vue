@@ -8,7 +8,7 @@
                     class="h-9 w-auto md:h-11 rounded-full shadow-sm"
                 >
                 <span class="text-xl md:text-2xl lg:text-3xl font-bold text-white">
-                    Cây Giống Tuấn Anh
+                    Cao su giống Tuấn Anh
                 </span>
             </NuxtLink>
 

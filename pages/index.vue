@@ -6,6 +6,12 @@
             <scrollableMenu :menu-items="menuItems" @scrollToSection="handleScrollToSection" />
         </div>
 
+        <section id="plant-varieties-section" class="py-12 md:py-16 bg-green-50/30"> 
+            <div class="container mx-auto px-4">
+                <AboutUs />
+            </div>
+        </section>
+
         <section id="featured-plants-section" class="py-12 md:py-16">
             <div class="container mx-auto px-4">
                 <h2 class="text-3xl md:text-4xl font-bold text-center text-green-700 mb-8">Cây trồng nổi bật</h2>
@@ -89,6 +95,7 @@ import Gallery from '~/components/common/Gallery.vue';
 import banner from '~/components/common/banner.vue';
 import testimonial from '~/components/common/testimonial.vue';
 import PlantVarietiesTable from '~/components/common/PlantVarietiesTable.vue';
+import AboutUs from '~/components/common/AboutUs.vue';
 
 const config = useRuntimeConfig();
 
