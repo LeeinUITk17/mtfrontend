@@ -28,9 +28,9 @@
                                 </div>
                             </div>
                         </td>
-                        <td class="hidden md:table-cell px-3 py-4 text-sm text-gray-600 whitespace-normal">
+                        <td class="hidden md:table-cell px-3 py-4 text-xl text-gray-600 whitespace-normal">
                             <p class="font-medium">{{ variety.type }}</p>
-                            <p v-if="variety.description" class="text-xs text-gray-500 mt-0.5">{{ variety.description }}</p>
+                            <p v-if="variety.description" class="text-md text-gray-500 mt-0.5">{{ variety.description }}</p>
                         </td>
                     </tr>
                 </tbody>

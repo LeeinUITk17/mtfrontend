@@ -23,7 +23,7 @@
               />
             </a>
             <a
-              href="https://www.youtube.com/@tailee21417"
+              href="https://www.youtube.com/@caosugiongtuananh"
               aria-label="Youtube"
               class="hover:text-white transition-colors duration-300"
             >
@@ -110,7 +110,7 @@
           <h3 class="text-lg font-semibold mb-4 text-white">Thông tin liên hệ</h3>
           <ul class="space-y-2">
             <li class="opacity-90">
-              <strong>Email:</strong> tu.lethanh.2810@gmail.com
+              <strong>Email:</strong> caosugiongtuananh@gmail.com
             </li>
             <li class="opacity-90">
               <strong>Điện thoại:</strong> 0979 072 768

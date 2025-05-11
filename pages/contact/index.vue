@@ -42,7 +42,7 @@
                                 <div>
                                     <p class="font-semibold text-green-800">Email:</p>
                                     <p>
-                                        <a href="mailto:tu.lethanh.2810@gmail.com" class="text-blue-600 hover:underline transition-colors">tu.lethanh.2810@gmail.com</a>
+                                        <a href="mailto:caosugiongtuananh@gmail.com" class="text-blue-600 hover:underline transition-colors">caosugiongtuananh@gmail.com</a>
                                     </p>
                                 </div>
                             </div>
@@ -83,7 +83,7 @@
                 <a href="https://www.facebook.com/caosugiongtuananh" target="_blank" rel="noopener noreferrer" aria-label="Theo dõi trên Facebook" class="text-gray-500 hover:text-blue-600 transform hover:scale-110 transition-all duration-300">
                     <img src="https://res.cloudinary.com/dbonwxmgl/image/upload/v1746092376/qgx8ou1dbf4ogr7g6bmw.png" alt="Facebook Logo" class="h-9 w-9" />
                 </a>
-                <a href="https://www.youtube.com/@tailee21417" target="_blank" rel="noopener noreferrer" aria-label="Xem trên YouTube" class="text-gray-500 hover:text-red-600 transform hover:scale-110 transition-all duration-300">
+                <a href="https://www.youtube.com/@caosugiongtuananh" target="_blank" rel="noopener noreferrer" aria-label="Xem trên YouTube" class="text-gray-500 hover:text-red-600 transform hover:scale-110 transition-all duration-300">
                     <img src="https://res.cloudinary.com/dbonwxmgl/image/upload/v1746092376/skrccs2d36g5hmixyfrw.png" alt="Youtube Logo" class="h-9 w-9" />
                 </a>
                 <a href="https://zalo.me/0979072768" target="_blank" rel="noopener noreferrer" aria-label="Liên hệ qua Zalo" class="text-gray-500 hover:text-blue-500 transform hover:scale-110 transition-all duration-300">
