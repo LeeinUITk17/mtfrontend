@@ -10,7 +10,11 @@ export default {
     "./error.vue",                  // Quét file error.vue (nếu có)
   ],
   theme: {
-    extend: {}, // Nơi bạn có thể mở rộng theme mặc định (màu sắc, font chữ...)
+    extend: {
+      fontFamily: {
+        sans: ['Inter', 'sans-serif'],
+      },
+    }, // Nơi bạn có thể mở rộng theme mặc định (màu sắc, font chữ...)
   },
   plugins: [require('@tailwindcss/typography'),], // Nơi bạn có thể thêm các plugin Tailwind
 }
