@@ -141,12 +141,55 @@ const nextPage = () => { if (currentPage.value < totalPages.value) goToPage(curr
 const prevPage = () => { if (currentPage.value > 1) goToPage(currentPage.value - 1); };
 
 useHead({
-    title: 'Tin tức & Kinh nghiệm - Cây Giống Tuấn Anh',
+    title: 'Kinh Nghiệm Trồng & Chăm Sóc Cây Cao Su Giống | Tuấn Anh',
     meta: [
-        { name: 'description', content: 'Cập nhật tin tức, kỹ thuật trồng và chăm sóc các loại cây giống từ Cây Giống Tuấn Anh.' },
-        { property: 'og:title', content: 'Tin tức & Kinh nghiệm - Cây Giống Tuấn Anh' },
-        { property: 'og:description', content: 'Cập nhật tin tức, kỹ thuật trồng và chăm sóc các loại cây giống.' },
+        { 
+            name: 'description', 
+            content: 'Chia sẻ kinh nghiệm trồng, chăm sóc cây cao su giống các loại RRIV 209, PB 235, DK4. Kỹ thuật lấy mủ, phòng bệnh và tăng năng suất từ vườn ươm Tuấn Anh Bình Phước.' 
+        },
+        { 
+            name: 'keywords', 
+            content: 'kinh nghiệm trồng cao su, kỹ thuật chăm sóc cây cao su giống, bệnh cây cao su, cách lấy mủ cao su, giống cao su năng suất cao, trồng cao su Bình Phước, chăm sóc cao su con, phân bón cho cây cao su, phòng trừ sâu bệnh cao su, mô hình trồng cao su hiệu quả' 
+        },
+        { property: 'og:title', content: 'Kinh Nghiệm Trồng & Chăm Sóc Cây Cao Su Giống | Tuấn Anh' },
+        { 
+            property: 'og:description', 
+            content: 'Kiến thức chuyên sâu về trồng và chăm sóc cây cao su giống từ vườn ươm Tuấn Anh Bình Phước' 
+        },
+        { property: 'og:image', content: 'https://res.cloudinary.com/dbonwxmgl/image/upload/v1746146995/gpg18t1hvlrlvww9sw9j.png' },
+        { property: 'og:url', content: 'https://caosugiongtuananh.com/blog' },
+        { property: 'og:type', content: 'website' },
+        
+        { name: 'twitter:card', content: 'summary_large_image' },
+        { name: 'twitter:title', content: 'Kinh Nghiệm Trồng Cây Cao Su Giống | Tuấn Anh' },
+        { name: 'twitter:description', content: 'Chia sẻ kinh nghiệm từ vườn ươm cao su giống uy tín tại Bình Phước' },
+        { name: 'twitter:image', content: 'https://res.cloudinary.com/dbonwxmgl/image/upload/q_auto,f_webp,w_auto/v1746146995/gpg18t1hvlrlvww9sw9j.png' },
+        
+        { rel: 'canonical', href: 'https://caosugiongtuananh.com/posts' },
     ],
+    link: [
+        { rel: 'canonical', href: 'https://caosugiongtuananh.com/posts' }
+    ],
+    script: [
+        {
+            type: 'application/ld+json',
+            innerHTML: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "Blog",
+                "name": "Kinh nghiệm trồng cây cao su giống",
+                "description": "Chia sẻ kiến thức chuyên sâu về trồng và chăm sóc cây cao su giống",
+                "url": "https://caosugiongtuananh.com/blog",
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "Cây Giống Tuấn Anh",
+                    "logo": {
+                        "@type": "ImageObject",
+                        "url": "https://res.cloudinary.com/dbonwxmgl/image/upload/q_auto,f_webp,w_auto/v1746146995/gpg18t1hvlrlvww9sw9j.png"
+                    }
+                }
+            })
+        }
+    ]
 });
 </script>
 

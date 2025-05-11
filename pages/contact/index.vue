@@ -93,32 +93,117 @@
         </section>
 
         <!-- <section class="mt-12 md:mt-16">
-    <h2 class="text-2xl md:text-3xl font-semibold text-center text-gray-600 mb-6">Tìm chúng tôi trên bản đồ</h2>
-    <div class="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden shadow-md border border-gray-200">
-        <iframe
-            src="https://www.google.com/maps/place/Nh%C3%A0+Ga+B%E1%BA%BFn+Xe+Su%E1%BB%91i+Ti%C3%AAn/@10.8795175,106.8115269,17z/data=!3m1!4b1!4m6!3m5!1s0x3174d8ad97e3301f:0x86f901230f1bcc0f!8m2!3d10.8795175!4d106.8141018!16s%2Fg%2F11wx9ykt1w?entry=ttu&g_ep=EgoyMDI1MDQzMC4xIKXMDSoASAFQAw%3D%3D" 
-            width="100%"
-            height="450"
-            style="border:0;"
-            allowfullscreen=""
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-            title="Bản đồ vị trí cửa hàng">
-        </iframe>
-    </div>
-</section> -->
+        <h2 class="text-2xl md:text-3xl font-semibold text-center text-gray-600 mb-6">Tìm chúng tôi trên bản đồ</h2>
+        <div class="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden shadow-md border border-gray-200">
+            <iframe
+                src="https://www.google.com/maps/place/Nh%C3%A0+Ga+B%E1%BA%BFn+Xe+Su%E1%BB%91i+Ti%C3%AAn/@10.8795175,106.8115269,17z/data=!3m1!4b1!4m6!3m5!1s0x3174d8ad97e3301f:0x86f901230f1bcc0f!8m2!3d10.8795175!4d106.8141018!16s%2Fg%2F11wx9ykt1w?entry=ttu&g_ep=EgoyMDI1MDQzMC4xIKXMDSoASAFQAw%3D%3D" 
+                width="100%"
+                height="450"
+                style="border:0;"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                title="Bản đồ vị trí cửa hàng">
+            </iframe>
+        </div>
+    </section> -->
     </div>
 </template>
 
 <script setup>
+const config = useRuntimeConfig()
 useHead({
-    title: 'Liên hệ - Cửa hàng Cây giống Tuấn Anh',
+    title: 'Liên Hệ Mua Cây Cao Su Giống - Vườn Ươm Tuấn Anh Bình Phước',
     meta: [
-        { name: 'description', content: 'Thông tin liên hệ, địa chỉ và cam kết của Cửa hàng Cây giống Tuấn Anh. Kết nối với chúng tôi qua mạng xã hội.' },
-        { property: 'og:title', content: 'Liên hệ - Cửa hàng Cây giống Tuấn Anh' },
-        { property: 'og:description', content: 'Thông tin liên hệ, địa chỉ và cam kết của Cửa hàng Cây giống Tuấn Anh.' },
-        { property: 'og:image', content: '/images/og-contact.jpg' },
-        { property: 'og:url', content: 'URL_TRANG_LIEN_HE_CUA_BAN' }
+        { 
+            name: 'description', 
+            content: 'Liên hệ ngay vườn ươm Tuấn Anh tại Bình Phước để mua cây cao su giống chất lượng cao các loại RRIV 209, PB 235, DK4. Tư vấn kỹ thuật trồng và chăm sóc miễn phí.' 
+        },
+        { 
+            name: 'keywords', 
+            content: 'liên hệ mua cây cao su giống, vườn ươm cao su Bình Phước, địa chỉ bán cây cao su giống, số điện thoại mua cây cao su, zalo vườn ươm cao su, mua cây cao su giống ở đâu, tư vấn trồng cao su, cây cao su giống giá rẻ' 
+        },
+        { 
+            property: 'og:title', 
+            content: 'Liên Hệ Mua Cây Cao Su Giống - Tuấn Anh Bình Phước' 
+        },
+        { 
+            property: 'og:description', 
+            content: 'Vườn ươm cao su giống chất lượng cao tại Bình Phước. Tư vấn kỹ thuật trồng và chăm sóc miễn phí.' 
+        },
+        { 
+            property: 'og:image', 
+            content: 'https://res.cloudinary.com/dbonwxmgl/image/upload/q_auto,f_webp,w_auto/v1746146995/gpg18t1hvlrlvww9sw9j.png' 
+        },
+        { 
+            property: 'og:url', 
+            content: `${config.public.baseUrl}/contact` 
+        },
+        { 
+            property: 'og:type', 
+            content: 'website' 
+        },
+        
+        { 
+            name: 'twitter:card', 
+            content: 'summary_large_image' 
+        },
+        { 
+            name: 'twitter:title', 
+            content: 'Liên Hệ Mua Cây Cao Su Giống - Tuấn Anh' 
+        },
+        { 
+            name: 'twitter:description', 
+            content: 'Vườn ươm cao su giống uy tín tại Bình Phước' 
+        },
+        { 
+            name: 'twitter:image', 
+            content: 'https://res.cloudinary.com/dbonwxmgl/image/upload/q_auto,f_webp,w_auto/v1746146995/gpg18t1hvlrlvww9sw9j.png' 
+        },
+        
+        { 
+            rel: 'canonical', 
+            href: `${config.public.baseUrl}/contact` 
+        },
+    ],
+    link: [
+        { 
+            rel: 'canonical', 
+            href: `${config.public.baseUrl}/contact` 
+        }
+    ],
+    script: [
+        {
+            type: 'application/ld+json',
+            innerHTML: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "LocalBusiness",
+                "name": "Vườn Ươm Cây Cao Su Giống Tuấn Anh",
+                "image": "https://res.cloudinary.com/dbonwxmgl/image/upload/q_auto,f_webp,w_auto/v1746146995/gpg18t1hvlrlvww9sw9j.png",
+                "description": "Cung cấp cây cao su giống chất lượng cao tại Bình Phước",
+                "address": {
+                    "@type": "PostalAddress",
+                    "streetAddress": "Khu phố 07",
+                    "addressLocality": "Chơn Thành",
+                    "addressRegion": "Bình Phước",
+                    "postalCode": "7711",
+                    "addressCountry": "VN"
+                },
+                "geo": {
+                    "@type": "GeoCoordinates",
+                    "latitude": "11.4625",
+                    "longitude": "106.6667"
+                },
+                "telephone": "+84979072768",
+                "email": "tu.lethanh.2810@gmail.com",
+                "openingHours": "Mo-Sa 08:00-18:00, Su 09:00-16:00",
+                "priceRange": "$$",
+                "sameAs": [
+                    "https://www.facebook.com/caosugiongtuananh",
+                    "https://www.youtube.com/@tailee21417"
+                ]
+            })
+        }
     ]
 });
 </script>

@@ -14,7 +14,12 @@
 
         <section id="featured-plants-section" class="py-12 md:py-16">
             <div class="container mx-auto px-4">
-                <h2 class="text-3xl md:text-4xl font-bold text-center text-green-700 mb-8">Cây trồng nổi bật</h2>
+                <h1 class="text-3xl md:text-4xl font-bold text-center text-green-700 mb-8">Cây Cao Su Giống Chất Lượng Tại Bình Phước</h1>
+                <p class="text-center text-lg mb-8 max-w-3xl mx-auto">
+                    Vườn ươm Tuấn Anh chuyên cung cấp các giống cao su chất lượng cao như RRIV 209, PB 235, DK4, 
+                    đạt tiêu chuẩn loại 1, cho năng suất mủ vượt trội. Giá cây cao su giống 2025 cạnh tranh nhất thị trường.
+                </p>
+                <h2 class="text-3xl md:text-4xl font-bold text-center text-green-700 mb-8">Cây trồng nổi bật</h2>   
                 <div v-if="plantsPending" class="text-center py-10">
                     <LoadingSpinner />
                     <p class="text-sm text-gray-500 mt-2">Đang tải cây trồng...</p>
@@ -58,11 +63,17 @@
             </div>
         </section>
 
+
+        
         <section id="cta-section" class="bg-primary py-10 text-gray-500 text-center">
             <div class="container mx-auto px-4">
-                <p class="text-xl mb-4 font-semibold">Sẵn sàng tìm cây mới hoặc chia sẻ kinh nghiệm?</p>
-                <NuxtLink to="/plants" class="inline-block text-primary text-lg font-semibold px-8 py-3 rounded-full hover:bg-green-100 transition-colors shadow-md">
-                    Khám phá ngay
+                <p class="text-xl mb-4 font-semibold">Vườn ươm cao su giống Tuấn Anh - Chơn Thành, Bình Phước</p>
+                <p class="mb-6 max-w-2xl mx-auto">
+                    Chuyên cung cấp cây cao su giống số lượng lớn cho các tỉnh miền Đông Nam Bộ. 
+                    Giá cạnh tranh, tư vấn kỹ thuật trồng và chăm sóc miễn phí.
+                </p>
+                <NuxtLink to="tel:0979072768" class="inline-block bg-white text-primary text-lg font-semibold px-8 py-3 rounded-full hover:bg-green-100 transition-colors shadow-md">
+                    Liên hệ ngay: 0979.072.768
                 </NuxtLink>
             </div>
         </section>
@@ -133,13 +144,211 @@ const { data: latestGalleryImages, pending: galleryPending, error: galleryError 
 );
 
 useHead({
-    title: 'Cây Giống Tuấn Anh - Trang chủ',
+    title: 'Cây Cao Su Giống Chất Lượng - Vườn Ươm Tuấn Anh Bình Phước',
     meta: [
-        { name: 'description', content: 'Khám phá các loại cây giống chất lượng, đọc bài viết kinh nghiệm và xem hình ảnh thực tế tại Cây Giống Tuấn Anh.' },
-        { property: 'og:title', content: 'Cây Giống Tuấn Anh - Trang chủ' },
-        { property: 'og:description', content: 'Khám phá các loại cây giống chất lượng, đọc bài viết kinh nghiệm và xem hình ảnh thực tế tại Cây Giống Tuấn Anh.' },
-        { property: 'og:image', content: 'https://res.cloudinary.com/dbonwxmgl/image/upload/v1746146995/gpg18t1hvlrlvww9sw9j.png' },
+        { 
+            name: 'description', 
+            content: 'Chuyên cung cấp cây cao su giống chất lượng cao các loại: RRIV 209, PB 235, DK4, VM 515. Giống cây cao su F1, kháng bệnh, năng suất mủ cao. Vườn ươm uy tín tại Bình Phước.' 
+        },
+        { 
+            name: 'keywords', 
+            content: 'cây cao su giống, bán cây cao su giống, giống cây cao su, giá cây cao su giống 2025, cây giống cao su Bình Phước, vườn ươm cao su giống Chơn Thành, cây cao su giống RRIV 209, cây cao su giống PB 235, kỹ thuật trồng cao su, chăm sóc cây cao su giống' 
+        },
+        { property: 'og:title', content: 'Cây Cao Su Giống Chất Lượng - Vườn Ươm Tuấn Anh Bình Phước' },
+        { 
+            property: 'og:description', 
+            content: 'Cung cấp cây cao su giống loại 1, giống F1 kháng bệnh, năng suất cao. Giá cạnh tranh, vận chuyển toàn quốc. Uy tín tại Bình Phước.' 
+        },
+        { property: 'og:image', content: 'https://res.cloudinary.com/dbonwxmgl/image/upload/q_auto,f_webp,w_auto/v1746146995/gpg18t1hvlrlvww9sw9j.png' },
+        { property: 'og:url', content: 'https://caosugiongtuananh.com/' },
+        { property: 'og:type', content: 'website' },
+        
+        { name: 'twitter:card', content: 'summary_large_image' },
+        { name: 'twitter:title', content: 'Cây Cao Su Giống Chất Lượng - Vườn Ươm Tuấn Anh Bình Phước' },
+        { name: 'twitter:description', content: 'Chuyên cung cấp cây cao su giống chất lượng cao các loại: RRIV 209, PB 235, DK4, VM 515' },
+        { name: 'twitter:image', content: 'https://res.cloudinary.com/dbonwxmgl/image/upload/q_auto,f_webp,w_auto/v1746146995/gpg18t1hvlrlvww9sw9j.png' },
+        
+        { rel: 'canonical', href: 'https://caosugiongtuananh.com/' },
     ],
+    link: [
+        { rel: 'canonical', href: 'https://caosugiongtuananh.com/' },
+    ],
+    script: [
+        {
+            type: 'application/ld+json',
+            innerHTML: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "WebSite",
+                "name": "Vườn Ươm Cao Su Giống Tuấn Anh",
+                "url": "https://caosugiongtuananh.com/",
+            })
+        },
+        {
+            type: 'application/ld+json',
+            innerHTML: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "Organization",
+                "name": "Vườn Ươm Cây Cao Su Giống Tuấn Anh",
+                "url": "https://caosugiongtuananh.com/",
+                "logo": "https://res.cloudinary.com/dbonwxmgl/image/upload/q_auto,f_webp,w_auto/v1746146995/gpg18t1hvlrlvww9sw9j.png",
+                "sameAs": [
+                    "https://www.facebook.com/caosugiongtuananh",
+                    "https://www.youtube.com/@tailee21417"
+                ],
+                "contactPoint": {
+                    "@type": "ContactPoint",
+                    "telephone": "+84979072768",
+                    "contactType": "sales",
+                    "areaServed": "VN",
+                    "availableLanguage": "Vietnamese"
+                }
+            })
+        },
+        {
+            type: 'application/ld+json',
+            children: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Trang chủ",
+                    "item": "https://caosugiongtuananh.com/"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "Giống cây",
+                    "item": "https://caosugiongtuananh.com/plants"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 3,
+                    "name": "Bài viết",
+                    "item": "https://caosugiongtuananh.com/posts"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 4,
+                    "name": "Kho ảnh",
+                    "item": "https://caosugiongtuananh.com/gallery"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 5,
+                    "name": "Liên hệ",
+                    "item": "https://caosugiongtuananh.com/contract"
+                }
+                ]
+            })
+            },
+        {
+            type: 'application/ld+json',
+            innerHTML: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "ItemList",
+                "itemListElement": featuredPlants.value?.map((plant, index) => ({
+                    "@type": "ListItem",
+                    "position": index + 1,
+                    "item": {
+                        "@type": "Product",
+                        "name": plant.name,
+                        "description": plant.description,
+                        "url": `https://caosugiongtuananh.com/plants/${plant.id}`,
+                        "image": plant.imageUrl,
+                        "offers": {
+                            "@type": "Offer",
+                            "priceCurrency": "VND",
+                            "price": plant.price,
+                            "availability": plant.stock > 0 ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
+                            "seller": {
+                                "@type": "Organization",
+                                "name": "Vườn Ươm Tuấn Anh"
+                            }
+                        }
+                    }
+                })) || []
+            })
+        },
+        {
+            type: 'application/ld+json',
+            innerHTML: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "Nursery",
+                "name": "Vườn Ươm Cây Cao Su Giống Tuấn Anh",
+                "image": "https://res.cloudinary.com/dbonwxmgl/image/upload/q_auto,f_webp,w_auto/v1746146995/gpg18t1hvlrlvww9sw9j.png",
+                "description": "Chuyên cung cấp cây cao su giống chất lượng cao tại Bình Phước",
+                "address": {
+                    "@type": "PostalAddress",
+                    "streetAddress": "Khu phố 07",
+                    "addressLocality": "Chơn Thành",
+                    "addressRegion": "Bình Phước",
+                    "postalCode": "7711",
+                    "addressCountry": "VN"
+                },
+                "geo": {
+                    "@type": "GeoCoordinates",
+                    "latitude": "11.4625",
+                    "longitude": "106.6667"
+                },
+                "telephone": "+84979072768",
+                "openingHours": "Mo-Fr 07:00-17:00",
+                "priceRange": "$$",
+                "hasOfferCatalog": {
+                    "@type": "OfferCatalog",
+                    "name": "Các giống cao su",
+                    "itemListElement": [
+                        {
+                            "@type": "OfferCatalog",
+                            "name": "Giống cao su năng suất cao",
+                            "itemListElement": [
+                                {
+                                    "@type": "Offer",
+                                    "itemOffered": {
+                                        "@type": "Product",
+                                        "name": "Cây cao su giống RRIV 209"
+                                    }
+                                },
+                                {
+                                    "@type": "Offer",
+                                    "itemOffered": {
+                                        "@type": "Product",
+                                        "name": "Cây cao su giống PB 235"
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                }
+            })
+        },
+        {
+            type: 'application/ld+json',
+            innerHTML: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "FAQPage",
+                "mainEntity": [
+                    {
+                        "@type": "Question",
+                        "name": "Giá cây cao su giống 2025 là bao nhiêu?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Giá cây cao su giống năm 2025 tại vườn ươm Tuấn Anh dao động từ X đến Y nghìn đồng/cây tùy giống và số lượng đặt mua. Liên hệ trực tiếp 0979.072.768 để nhận báo giá chi tiết."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Thời điểm tốt nhất để trồng cây cao su?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Thời điểm lý tưởng để trồng cây cao su giống là đầu mùa mưa (tháng 5-7) tại khu vực miền Đông Nam Bộ, giúp cây có đủ độ ẩm để phát triển."
+                        }
+                    }
+                ]
+            })
+        }
+    ]
 });
 </script>
 
