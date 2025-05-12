@@ -19,7 +19,7 @@
             </div>
 
             <div v-else-if="paginatedPosts && paginatedPosts.length > 0" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-                <PostPreview v-for="post in paginatedPosts" :key="post.id" :post="post" />
+                <PostPreview v-for="post in paginatedPosts" :key="post.slug" :post="post" />
             </div>
 
             <div v-else class="text-center text-gray-600 py-16">

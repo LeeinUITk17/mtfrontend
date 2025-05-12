@@ -1,6 +1,6 @@
 <template>
     <NuxtLink
-        :to="`/plants/${plant.id}`"
+        :to="`/plants/${plant.slug}`"
         class="block border border-gray-200 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 h-full flex flex-col bg-white group"
     >
         <div v-if="plant.images?.length > 0 && plant.images[0].url" class="relative w-full h-48 md:h-56 overflow-hidden">

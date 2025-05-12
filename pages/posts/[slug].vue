@@ -74,7 +74,6 @@
               <header>
                 <h1 class="text-2xl md:text-3xl font-bold text-gray-900 mb-2" itemprop="headline">{{ post.title }}</h1>
                 <div class="flex items-center text-sm text-gray-500 mb-6">
-                  <time :datetime="post.createdAt" itemprop="datePublished">{{ formatDate(post.createdAt) }}</time>
                   <span class="mx-2">•</span>
                   <span itemprop="author" itemscope itemtype="https://schema.org/Person">
                     <span itemprop="name">Vườn Ươm Tuấn Anh</span>
@@ -112,7 +111,7 @@
         <aside v-if="relatedPosts && relatedPosts.length > 0" class="mt-12 md:mt-16" aria-label="Bài viết liên quan">
           <h2 class="text-2xl font-semibold text-gray-800 mb-6">Bài viết liên quan</h2>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            <PostPreview v-for="related in relatedPosts" :key="related.id" :post="related" />
+            <PostPreview v-for="related in relatedPosts" :key="related.slug" :post="related" />
           </div>
         </aside>
       </main>
@@ -145,13 +144,13 @@ const extractText = (html) => {
 
 const config = useRuntimeConfig();
 const route = useRoute();
-const postId = route.params.id;
+const postSlug = route.params.slug;
 
 const { data: post, pending: postPending, error: postError } = await useAsyncData(
-  `public-post-${postId}`,
+  `public-post-${postSlug}`,
   async () => {
     try {
-      const fetchedPost = await $fetch(`${config.public.apiBase}/posts/${postId}`);
+      const fetchedPost = await $fetch(`${config.public.apiBase}/posts/slug/${postSlug}`);
       if (!fetchedPost) {
         throw createError({ statusCode: 404, statusMessage: 'Bài viết không tồn tại.', fatal: true });
       }
@@ -167,13 +166,13 @@ const { data: post, pending: postPending, error: postError } = await useAsyncDat
 );
 
 const { data: relatedPosts, pending: relatedPostsPending, error: relatedPostsError } = await useAsyncData(
-  `related-posts-public-${postId}`,
+  `related-posts-public-${postSlug}`,
   async () => {
     try {
       const posts = await $fetch(`${config.public.apiBase}/posts`, {
         query: {
           limit: 2,
-          excludeId: postId,
+          excludeId: postSlug,
         },
       });
       return Array.isArray(posts) ? posts : [];
@@ -226,7 +225,7 @@ useHead(() => {
       },
       { 
         property: 'og:url', 
-        content: `${config.public.baseUrl}/posts/${postId}` 
+        content: `${config.public.baseUrl}/posts/slug/${postSlug}` 
       },
       { 
         property: 'og:type', 
@@ -264,7 +263,7 @@ useHead(() => {
     link: [
       { 
         rel: 'canonical', 
-        href: `${config.public.baseUrl}/posts/${postId}` 
+        href: `${config.public.baseUrl}/posts/slug/${postSlug}` 
       }
     ],
     script: [
@@ -293,7 +292,7 @@ useHead(() => {
           "dateModified": post.value?.updatedAt,
           "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": `${config.public.baseUrl}/posts/${postId}`
+            "@id": `${config.public.baseUrl}/posts/slug/${postSlug}`
           }
         })
       }

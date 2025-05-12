@@ -1,5 +1,5 @@
 <template>
-    <NuxtLink :to="`/posts/${post.id}`" class="group block bg-white rounded-xl shadow-md hover:shadow-lg overflow-hidden transition-all duration-300 border border-gray-100 flex flex-col h-full">
+    <NuxtLink :to="`/posts/${post.slug}`" class="group block bg-white rounded-xl shadow-md hover:shadow-lg overflow-hidden transition-all duration-300 border border-gray-100 flex flex-col h-full">
         <div class="relative h-48 w-full overflow-hidden">
             <NuxtImg v-if="post.images?.length > 0" :src="post.images[0].url" :alt="post.title || 'Ảnh bài viết'" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" sizes="sm:100vw md:50vw lg:400px" quality="80" loading="lazy" />
             <div v-else class="w-full h-full bg-gradient-to-br from-green-50 to-emerald-100 flex items-center justify-center text-green-300">
