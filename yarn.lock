@@ -1612,7 +1612,7 @@
     vite-plugin-checker "^0.9.1"
     vue-bundle-renderer "^2.1.1"
 
-"@nuxtjs/robots@5.2.10":
+"@nuxtjs/robots@^5.2.10":
   version "5.2.10"
   resolved "https://registry.yarnpkg.com/@nuxtjs/robots/-/robots-5.2.10.tgz#dc89ad50561ce2c0925328cf8c0227398cffbbc2"
   integrity sha512-WiO+VA8UwDgVLy7JCrGTrAmSNNw397OuNseKOG051ixswEDd0QhNw4cUtgNd2RkSIL7WlkfwkizdJFCd9y9iXw==

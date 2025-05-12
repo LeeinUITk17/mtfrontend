@@ -13,7 +13,7 @@
     "@headlessui/vue": "^1.7.23",
     "@heroicons/vue": "^2.2.0",
     "@nuxt/image": "^1.10.0",
-    "@nuxtjs/robots": "5.2.10",
+    "@nuxtjs/robots": "^5.2.10",
     "@nuxtjs/sitemap": "^7.2.10",
     "@prisma/client": "^6.7.0",
     "@tinymce/tinymce-vue": "^6.1.0",
