@@ -1,14 +1,35 @@
-// nuxt.config.ts
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
-  devtools: { enabled: false },
-  modules: ['@nuxtjs/tailwindcss', '@nuxt/image', '@vite-pwa/nuxt','@nuxtjs/sitemap', '@nuxtjs/robots'],
+  devtools: { enabled: false },  
+  modules: ['@nuxtjs/tailwindcss', '@nuxt/image', '@vite-pwa/nuxt', '@nuxtjs/sitemap', '@nuxtjs/robots'],
   ssr: true,
   runtimeConfig: {
     public: {
       apiBase: process.env.NUXT_PUBLIC_API_BASE || 'http://localhost:8000',
-      tinymceApiKey: process.env.NUXT_PUBLIC_TINYMCE_API_KEY
+      tinymceApiKey: process.env.NUXT_PUBLIC_TINYMCE_API_KEY,
+      siteUrl: process.env.NUXT_PUBLIC_SITE_URL || 'http://localhost:3000'
     }
+  },
+  sitemap: {
+    sources: [
+      '/api/__sitemap__/urls'
+    ],
+    exclude: [
+      '/admin/**',
+      '/login',
+      '/register',
+      '/user/**'
+    ],
+    defaults: {
+      changefreq: 'daily',
+      priority: 0.7,
+      lastmod: new Date().toISOString()
+    },
+    xslTips: false,
+    strictNuxtContentPaths: true
+  },
+  robots: {
+    mergeWithRobotsTxtPath: 'public/_dir/robots.txt'
   },
   app: {
     head: {
