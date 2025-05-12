@@ -2,13 +2,7 @@
 User-agent: *
 Allow: /
 Disallow: /admin/
-Disallow: /private/
-Disallow: /api/
-Disallow: /*?*
-Disallow: /*.json$
-Disallow: /*.xml$
 
 Sitemap: https://caosugiongtuananh.com/sitemap.xml
-Sitemap: https://caosugiongtuananh.com/sitemap-images.xml
 
 # Crawl-delay: 10 
