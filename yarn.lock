@@ -1612,6 +1612,21 @@
     vite-plugin-checker "^0.9.1"
     vue-bundle-renderer "^2.1.1"
 
+"@nuxtjs/robots@5.2.10":
+  version "5.2.10"
+  resolved "https://registry.yarnpkg.com/@nuxtjs/robots/-/robots-5.2.10.tgz#dc89ad50561ce2c0925328cf8c0227398cffbbc2"
+  integrity sha512-WiO+VA8UwDgVLy7JCrGTrAmSNNw397OuNseKOG051ixswEDd0QhNw4cUtgNd2RkSIL7WlkfwkizdJFCd9y9iXw==
+  dependencies:
+    "@nuxt/kit" "^3.16.2"
+    consola "^3.4.2"
+    defu "^6.1.4"
+    nuxt-site-config "^3.1.9"
+    pathe "^2.0.3"
+    pkg-types "^2.1.0"
+    sirv "^3.0.1"
+    std-env "^3.9.0"
+    ufo "^1.6.1"
+
 "@nuxtjs/sitemap@^7.2.10":
   version "7.2.10"
   resolved "https://registry.yarnpkg.com/@nuxtjs/sitemap/-/sitemap-7.2.10.tgz#708bdca3fc1c2fc73ba45ecdce7675452df248ea"
