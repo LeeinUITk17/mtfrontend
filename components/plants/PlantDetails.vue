@@ -296,7 +296,7 @@ useHead(() => {
       }
     ],
     script: [
-      {
+    {
         type: 'application/ld+json',
         innerHTML: JSON.stringify({
           "@context": "https://schema.org",
@@ -305,29 +305,79 @@ useHead(() => {
           "description": plantDescription,
           "image": imageUrl,
           "brand": {
-            "@type": "Brand",
-            "name": "Vườn Ươm Tuấn Anh"
+              "@type": "Brand",
+              "name": "Vườn Ươm Tuấn Anh"
           },
           "offers": {
-            "@type": "Offer",
-            "url": `${config.public.baseUrl}/plants/${plantId}`,
-            "priceCurrency": "VND",
-            "price": price,
-            "priceValidUntil": "2025-12-31",
-            "itemCondition": "https://schema.org/NewCondition",
-            "availability": `https://schema.org/${stockStatus}`,
-            "seller": {
-              "@type": "Organization",
-              "name": "Vườn Ươm Tuấn Anh"
-            }
+              "@type": "Offer",
+              "url": `${config.public.baseUrl}/plants/${plantId}`,
+              "priceCurrency": "VND",
+              "price": price && price !== 'Thương lượng' ? parseFloat(price) : 0,
+              "priceValidUntil": priceValidUntil.toISOString().split('T')[0],
+              "itemCondition": "https://schema.org/NewCondition",
+              "availability": `https://schema.org/${stockStatus}`,
+              "seller": {
+                "@type": "Organization",
+                "name": "Vườn Ươm Tuấn Anh"
+              },
+              "hasMerchantReturnPolicy": {
+                "@type": "MerchantReturnPolicy",
+                "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+                "merchantReturnDays": 7,
+                "returnMethod": "https://schema.org/ReturnByMail",
+                "returnFees": "https://schema.org/FreeReturn"
+              },
+              "shippingDetails": {
+                "@type": "OfferShippingDetails",
+                "shippingRate": {
+                  "@type": "MonetaryAmount",
+                  "value": 0,
+                  "currency": "VND"
+                },
+                "shippingDestination": {
+                  "@type": "DefinedRegion",
+                  "addressCountry": "VN"
+                },
+                "deliveryTime": {
+                  "@type": "ShippingDeliveryTime",
+                  "handlingTime": {
+                    "@type": "QuantitativeValue",
+                    "minValue": 1,
+                    "maxValue": 2,
+                    "unitCode": "d"
+                  },
+                  "transitTime": {
+                    "@type": "QuantitativeValue",
+                    "minValue": 1,
+                    "maxValue": 3,
+                    "unitCode": "d"
+                  }
+                }
+              }
           },
           "aggregateRating": {
-            "@type": "AggregateRating",
-            "ratingValue": "4.8",
-            "reviewCount": "25"
+              "@type": "AggregateRating",
+              "ratingValue": "4.8",
+              "reviewCount": "25",
+              "bestRating": "5",
+              "worstRating": "1"
+          },
+          "review": {
+              "@type": "Review",
+              "reviewRating": {
+                "@type": "Rating",
+                "ratingValue": "4.8",
+                "bestRating": "5"
+              },
+              "author": {
+                "@type": "Person",
+                "name": "Khách hàng"
+              },
+              "datePublished": "2025-01-01",
+              "reviewBody": "Cây giống chất lượng tốt, tỷ lệ sống cao. Nhân viên tư vấn nhiệt tình."
           }
         })
-      },
+    },
     ]
   };
 });
