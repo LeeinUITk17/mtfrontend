@@ -181,16 +181,16 @@ register();
 
 const config = useRuntimeConfig();
 const route = useRoute();
-const plantId = route.params.id;
+const plantSlug = route.params.slug;
 
 const mainSwiperRef = ref(null);
 const thumbsSwiperInstance = ref(null);
 
 const { data: plant, pending: plantPending, error: plantError } = await useAsyncData(
-    `plant-detail-${plantId}`,
+    `plant-detail-${plantSlug}`,
     async () => {
         try {
-            const response = await $fetch(`${config.public.apiBase}/plants/${plantId}`);
+            const response = await $fetch(`${config.public.apiBase}/plants/slug/${plantSlug}`);
             if (!response) {
                 throw createError({ statusCode: 404, statusMessage: 'Plant not found', fatal: true });
             }
@@ -270,7 +270,7 @@ useHead(() => {
       },
       { 
         property: 'og:url', 
-        content: `${config.public.baseUrl}/plants/${plantId}` 
+        content: `${config.public.baseUrl}/plants/${plantSlug}` 
       },
       { 
         property: 'og:type', 
@@ -292,7 +292,7 @@ useHead(() => {
     link: [
       { 
         rel: 'canonical', 
-        href: `${config.public.baseUrl}/plants/${plantId}` 
+        href: `${config.public.baseUrl}/plants/${plantSlug}` 
       }
     ],
     script: [
