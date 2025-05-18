@@ -1,8 +1,11 @@
-
 User-agent: *
 Allow: /
 Disallow: /admin/
+Disallow: /login
+Disallow: /api/
+Disallow: /_nuxt/
+Disallow: /*/undefined/ 
+Disallow: /categories/  
+Disallow: /posts/*/slug/ 
 
 Sitemap: https://caosugiongtuananh.com/sitemap.xml
-
-# Crawl-delay: 10 

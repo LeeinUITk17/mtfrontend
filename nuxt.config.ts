@@ -3,6 +3,11 @@ export default defineNuxtConfig({
   devtools: { enabled: false },  
   modules: ['@nuxtjs/tailwindcss', '@nuxt/image', '@vite-pwa/nuxt', '@nuxtjs/sitemap', '@nuxtjs/robots'],
   ssr: true,
+  routeRules: {
+    '/admin/**': { index: false },
+    '/login': { index: false },
+    '/contract': { index: false }
+  },
   runtimeConfig: {
     public: {
       apiBase: process.env.NUXT_PUBLIC_API_BASE || 'http://localhost:8000',
@@ -15,10 +20,14 @@ export default defineNuxtConfig({
       '/api/__sitemap__/urls'
     ],
     exclude: [
-      '/admin/**',
-      '/login',
-      '/register',
-      '/user/**'
+      '/admin/**',   
+      '/login',     
+      '/register',   
+      '/user/**',      
+      '/_nuxt/**',   
+      '/**/undefined/**',
+      '/contract',    
+      '/parking.php', 
     ],
     defaults: {
       changefreq: 'daily',
